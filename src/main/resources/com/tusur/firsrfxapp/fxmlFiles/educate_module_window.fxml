@@ -73,7 +73,7 @@
       <Pane fx:id="CircleArea" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="28.0" prefWidth="469.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
       <TextArea fx:id="TaskArea" prefHeight="200.0" prefWidth="200.0" text="fdbdfbdb" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
          <font>
-            <Font size="14.0" />
+            <Font name="Arial" size="14.0" />
          </font>
       </TextArea>
    </children>

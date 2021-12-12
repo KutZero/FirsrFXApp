@@ -1,5 +1,7 @@
 package com.tusur.firsrfxapp;
 
+import javafx.scene.control.ButtonBase;
+import javafx.scene.control.Labeled;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Button;
 
@@ -21,13 +23,14 @@ public class AllTasksInWindow {
         //this.OptionsCount = OptionsCount; // Кол-во вариантов ответа (всегда 4)
         this.ShowedTasksCount = ShowedTasksCount;
 
-        TasksCount = 8; // типо получил кол-во вопросов
+        TasksCount = 12; // типо получил кол-во вопросов
         ChosenAnswers = new int[TasksCount];
 
 
         // Настроить все поля label
         for (int i = 0; i < TaskField.length; i++)
         {
+            TaskField[i].setStyle("-fx-text-fill: #005aae ;") ;
             TaskField[i].setEditable(false);
             TaskField[i].setPrefColumnCount(120);
             TaskField[i].setPrefRowCount(60);
