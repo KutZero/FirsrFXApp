@@ -2,62 +2,79 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="560.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tusur.firsrfxapp.EducateModuleWindowController">
+<GridPane fx:id="MainGridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tusur.firsrfxapp.EducateModuleWindowController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="50.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="220.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="0.0" prefWidth="60.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="220.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="50.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="-Infinity" minHeight="6.0" prefHeight="50.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="340.0" minHeight="10.0" prefHeight="306.3333435058594" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="0.0" prefHeight="60.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+  </rowConstraints>
    <children>
-      <ImageView fitHeight="104.0" fitWidth="244.0" layoutX="218.0" layoutY="509.0" pickOnBounds="true" preserveRatio="true">
+      <Button fx:id="ThirdOptionBTM" mnemonicParsing="false" prefHeight="42.0" prefWidth="285.0" style="-fx-background-color: #005aae;" text="Button" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="FourthOptionBTM" mnemonicParsing="false" prefHeight="42.0" prefWidth="277.0" style="-fx-background-color: #005aae;" text="Button" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="SecondOptionBTM" mnemonicParsing="false" prefHeight="42.0" prefWidth="279.0" style="-fx-background-color: #005aae;" text="Button" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="FirstOptionBTM" mnemonicParsing="false" prefHeight="42.0" prefWidth="357.0" style="-fx-background-color: #005aae;" text="Button" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+      </Button>
+      <Label fx:id="ExitBTM" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="22.0" prefWidth="220.0" text="Выйти в меню" textFill="#005aae" GridPane.columnIndex="3" GridPane.halignment="RIGHT">
+         <font>
+            <Font name="Arial Black" size="14.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="43.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="TOP">
          <image>
             <Image url="@../images/image 3.png" />
          </image>
       </ImageView>
-      <Label layoutX="490.0" layoutY="27.0" text="Выйти в меню" textFill="#005aae" AnchorPane.rightAnchor="80.0">
-         <font>
-            <Font name="Arial Black" size="14.0" />
-         </font></Label>
-      <Label layoutX="80.0" layoutY="440.0" text="предыдущий вопрос" textFill="#005aae" AnchorPane.leftAnchor="80.0">
+      <Label fx:id="NextTaskBTM" alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="248.0" text="следующий вопрос" textFill="#005aae" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
          <font>
             <Font name="Arial Black" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="450.0" layoutY="440.0" text="следующий вопрос" textFill="#005aae" AnchorPane.rightAnchor="80.0">
+      <Label fx:id="PrevTaskBTM" alignment="BOTTOM_LEFT" prefHeight="22.0" prefWidth="248.0" text="предыдущий вопрос" textFill="#005aae" GridPane.columnIndex="1" GridPane.rowIndex="4">
          <font>
             <Font name="Arial Black" size="14.0" />
          </font>
       </Label>
-      <Button layoutX="80.0" layoutY="361.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #005aae;" text="Button" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="80.0">
+      <Pane prefHeight="200.0" prefWidth="200.0" />
+      <Pane fx:id="CircleArea" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="28.0" prefWidth="469.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+      <TextArea fx:id="TaskArea" prefHeight="200.0" prefWidth="200.0" text="fdbdfbdb" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font size="14.0" />
          </font>
-      </Button>
-      <Button layoutX="354.0" layoutY="361.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #005aae;" text="Button" textAlignment="CENTER" textFill="WHITE" AnchorPane.rightAnchor="80.0">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Button>
-      <Button layoutX="80.0" layoutY="295.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #005aae;" text="Button" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="80.0">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Button>
-      <Button layoutX="350.0" layoutY="295.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #005aae;" text="Button" textAlignment="CENTER" textFill="WHITE" AnchorPane.rightAnchor="80.0">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Button>
-      <Circle fill="DODGERBLUE" layoutX="292.0" layoutY="490.0" radius="4.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <Circle fill="#c5c5c5" layoutX="306.0" layoutY="490.0" radius="4.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <Circle fill="#c5c5c5" layoutX="319.0" layoutY="490.0" radius="4.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <Circle fill="#c5c5c5" layoutX="333.0" layoutY="490.0" radius="4.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <Circle fill="#c5c5c5" layoutX="347.0" layoutY="490.0" radius="4.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <Circle fill="#c5c5c5" layoutX="361.0" layoutY="490.0" radius="4.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <Circle fill="#c5c5c5" layoutX="374.0" layoutY="490.0" radius="4.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <Circle fill="#c5c5c5" layoutX="388.0" layoutY="490.0" radius="4.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c5c5c5" height="208.0" layoutX="80.0" layoutY="67.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="519.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" />
+      </TextArea>
    </children>
-</AnchorPane>
+</GridPane>
