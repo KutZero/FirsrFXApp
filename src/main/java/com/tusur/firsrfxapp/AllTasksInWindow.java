@@ -17,13 +17,14 @@ public class AllTasksInWindow {
     private static final int OptionsCount = 4; // Кол-во вариантов ответа (всегда 4)
     private final int ShowedTasksCount; // Кол-во одновременно выводимых заданий (равно общему кол-ву заданий)
 
-    AllTasksInWindow(TextArea TaskField[], Button[][] OptionsFields, int ShowedTasksCount){
+    // как то надо еще передать массив вопросов полученных через класс BDController в выбранном окне
+    AllTasksInWindow(TextArea TaskField[], Button[][] OptionsFields, int ShowedTasksCount, int TasksCount){
         this.TaskField = TaskField;
         this.OptionsFields = OptionsFields;
         //this.OptionsCount = OptionsCount; // Кол-во вариантов ответа (всегда 4)
         this.ShowedTasksCount = ShowedTasksCount;
 
-        TasksCount = 12; // типо получил кол-во вопросов
+        this.TasksCount = TasksCount; // типо получил кол-во вопросов
         ChosenAnswers = new int[TasksCount];
 
 
@@ -36,15 +37,13 @@ public class AllTasksInWindow {
             TaskField[i].setPrefRowCount(60);
         }
 
-        // запрос к бд, получение кол-ва вопросов и вопросов
-
         TaskClass = new TaskAndOntions[TasksCount];
 
-        ShowedTask = 0;
+        ShowedTask = 0; // Отображаемое сейчас задание (только если одновременно выводится только 1 задание)
 
         // Каждому TaskClass надо назначить свои вопросы, варианты ответа и места где они будут выводиться
-        // Вариант Егора, где все вопросы в разных местах выводятся
-        if (TaskField.length > 1)
+        // Вариант Егора, где все вопросы в разных местах выводятся (для каждого вопроса свои поля и все вопросы выводятся одновременно)
+        if (this.ShowedTasksCount > 1)
         {
             for (int i = 0; i < TasksCount ; i++)
             {
@@ -67,21 +66,78 @@ public class AllTasksInWindow {
         showTask(0);
     }
 
-    // нет обработки нажатий на кнопки с вариантами ответа
-
-    public int getShowedTask() {
+    /*public int getShowedTask() {
         return this.ShowedTask;
-    }
+    }*/
 
-    void setChosenOption(Button PushedBTM, int ChosenAns){
-        for (int i = 0; i < OptionsCount; i++)
+    // Главное во втором измерении массива OptionsFields расположить кнопки в правильном порядке (смотри нумерацию в окне EducateModule)
+    void setChosenOption(Button PushedBTM){
+
+        for (int i = 0; i < OptionsFields.length; i++)
         {
-            OptionsFields[0][i].setStyle("-fx-background-color: #005aae");
+            for (int j = 0; j < OptionsFields[i].length; j++)
+            {
+                OptionsFields[i][j].setStyle("-fx-background-color: #005aae");
+                if (PushedBTM == OptionsFields[i][j])
+                {
+                    // задание номер i + 1
+                    // выбранный ответ j + 1
+                    OptionsFields[i][j].setStyle("-fx-background-color: green");
+                    if (ShowedTasksCount == 1)
+                    {
+                        // Все задания имеют одинаковые поля вывода
+                        TaskClass[ShowedTask].setChosenOptionNum(j+1); //ChosenAns
+                        ChosenAnswers[ShowedTask] = j+1;//ChosenAns;
+                    }
+                    else
+                    {
+                        // Все задания имеют разные поля вывода
+                        TaskClass[i].setChosenOptionNum(j+1);
+                        ChosenAnswers[i] = j+1;
+                    }
+                }
+            }
         }
-        PushedBTM.setStyle("-fx-background-color: green");
-        TaskClass[ShowedTask].setChosenOptionNum(ChosenAns);
 
-        ChosenAnswers[ShowedTask] = ChosenAns;
+        /*void setChosenOption(Button PushedBTM, int ChosenAns){
+
+            for (int i = 0; i < OptionsFields.length; i++)
+            {
+                for (int j = 0; j < OptionsFields[i].length; j++)
+                {
+                    OptionsFields[i][j].setStyle("-fx-background-color: #005aae");
+                    if (PushedBTM == OptionsFields[i][j])
+                    {
+                        // задание номер i + 1
+                        // выбранный ответ j + 1
+                        OptionsFields[i][j].setStyle("-fx-background-color: green");
+                        if (ShowedTasksCount == 1)
+                        {
+                            // Все задания имеют одинаковые поля вывода
+                            TaskClass[ShowedTask].setChosenOptionNum(j+1); //ChosenAns
+                            ChosenAnswers[ShowedTask] = j+1;//ChosenAns;
+                        }
+                        else
+                        {
+                            // Все задания имеют разные поля вывода
+                            TaskClass[i].setChosenOptionNum(ChosenAns);
+                            ChosenAnswers[i] = ChosenAns;
+                        }
+                    }
+                }
+            }*/
+
+        /*for (int j = 0; j < OptionsCount; j++)
+        {
+            OptionsFields[0][j].setStyle("-fx-background-color: #005aae");
+        }
+
+        PushedBTM.setStyle("-fx-background-color: green");*/
+
+
+        //askClass[ShowedTask].setChosenOptionNum(ChosenAns);
+
+        //ChosenAnswers[ShowedTask] = ChosenAns;
 
     }
 
@@ -96,13 +152,9 @@ public class AllTasksInWindow {
         if(ShowedTask < TasksCount - 1)
         {
             showTask(++ShowedTask);
-            //OptionsFields[0][ShowedTask].setStyle("-fx-background-color: green");
             return false;
         }
-        /*for (int i = 0; i < TasksCount ; i++)
-        {
-            System.out.printf(ChosenAnswers[ShowedTask] + "\n");
-        }*/
+
         return true;
     }
 

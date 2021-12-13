@@ -2,11 +2,15 @@ package com.tusur.firsrfxapp;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -53,8 +57,11 @@ public class EducateModuleWindowController {
 
     private final int CircleRadius = 5; // Радиус кружков индикатора
     private final int CircleOffsetFac = 15; // Отступ между кружками индикатора
-    private final int NumOfOptions = 4; // Количество кнопок с вариантами ответов
-    //private static final int OptionsCount = 4; // Кол-во вариантов ответов
+    //private final int NumOfOptions = 4; // Количество кнопок с вариантами ответов
+    private BDController DBControlForModuleWindow; // Экземпляр класса для работы с бд в этом окне
+    private static final int OptionsCount = 4; // Кол-во вариантов ответов
+    private int TasksCount; // Общее кол-во заданий
+    private AllTasksInWindow TasksInWindow; // Класс для работы с заданиями в окне
 
     // Класс для обработки индикатора выбранного задания
     private class CircleIndicator{
@@ -126,28 +133,34 @@ public class EducateModuleWindowController {
         }
     }*/
 
+    // Установить обработчик нажатий выбранной кнопоки
+    private void setMouseClickedHandler (Button CurrentButton) {
+        CurrentButton.setOnMouseClicked(mouseEvent -> {
+            TasksInWindow.setChosenOption(CurrentButton);
+        });
+
+    }
+
     @FXML
     void initialize() {
 
+        // Запрос к базе, получение кол-ва вопросов
+        DBControlForModuleWindow = new BDController();
+        TasksCount = DBControlForModuleWindow.getTasksCount();
 
-        //final int CircleCount = getTaskCount();
+        // Запрос к базе, получение кол-ва вопросов
+
+        // рисование нужного кол-ва элементов в которых будут отображаться задания
         Button[][] OptionsArray = new Button[][] {{FirstOptionBTM, SecondOptionBTM, ThirdOptionBTM, FourthOptionBTM}};
-
-        //OptionsArray[0][0].setStyle("-fx-background-color: green");
-        //OptionsArray[0][1].setStyle("-fx-background-color: green");
-
         TextArea[] FakeTextArea = new TextArea[]{TaskArea};
+        // рисование нужного кол-ва элементов в которых будут отображаться задания
 
-        AllTasksInWindow TasksInWindow = new AllTasksInWindow(FakeTextArea, OptionsArray, 1);
+        TasksInWindow = new AllTasksInWindow(FakeTextArea, OptionsArray, 1, TasksCount);
 
-        final int CircleCount = TasksInWindow.getTasksCount();
+        final int CircleCount = TasksCount;
 
         CircleArea.setPrefWidth(CircleCount * CircleOffsetFac - CircleRadius);
         CircleIndicator CircleIndArr = new CircleIndicator(CircleCount);
-
-        //Circles = new Circle[CircleCount];
-
-        //TaskArea.setText("ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
 
         TasksInWindow.showTask(0);
 
@@ -169,6 +182,13 @@ public class EducateModuleWindowController {
 
         //Circles[0].setFill(Paint.valueOf("#005aae"));
 
+        // Установить обработчик нажатий всех кнопок
+        for (int j = 0; j < OptionsArray[0].length; j++)
+        {
+            //OptionsArray[0][j].setOnMouseClicked(this.BuiltMouseEvent(MainGridPane));
+            setMouseClickedHandler(OptionsArray[0][j]);
+        }
+
         NextTaskBTM.setOnMouseClicked(mouseEvent -> {
             // меняются вопросы и варианты ответов
             TasksInWindow.showNextTask();
@@ -176,25 +196,27 @@ public class EducateModuleWindowController {
         });
 
         PrevTaskBTM.setOnMouseClicked(mouseEvent -> {
+            // меняются вопросы и варианты ответов
             TasksInWindow.showPrevTask();
             CircleIndArr.setPrevActiveCircle();
         });
 
-        FirstOptionBTM.setOnMouseClicked(mouseEvent -> {
-            TasksInWindow.setChosenOption(FirstOptionBTM, 1);
+        /*FirstOptionBTM.setOnMouseClicked(mouseEvent -> {
+            TasksInWindow.setChosenOption(FirstOptionBTM);
         });
 
         SecondOptionBTM.setOnMouseClicked(mouseEvent -> {
-            TasksInWindow.setChosenOption(SecondOptionBTM, 2);
+            TasksInWindow.setChosenOption(SecondOptionBTM);
         });
 
         ThirdOptionBTM.setOnMouseClicked(mouseEvent -> {
-            TasksInWindow.setChosenOption(ThirdOptionBTM, 3);
+            TasksInWindow.setChosenOption(ThirdOptionBTM);
         });
 
         FourthOptionBTM.setOnMouseClicked(mouseEvent -> {
-            TasksInWindow.setChosenOption(FourthOptionBTM, 4);
-        });
+            TasksInWindow.setChosenOption(FourthOptionBTM);
+        });*/
+
         /*Label testLabel = new Label("Width " + CircleArea.getWidth() + " Height " + CircleArea.getHeight());
         testLabel.setScaleX(2);
         testLabel.setScaleY(2);
