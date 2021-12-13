@@ -37,8 +37,11 @@ public class EducateModuleWindowController {
     @FXML
     private Label PrevTaskBTM;
 
+    /*@FXML
+    private TextArea TaskArea;*/
+
     @FXML
-    private TextArea TaskArea;
+    private Label TaskArea;
 
     @FXML
     private Button FirstOptionBTM;
@@ -152,10 +155,11 @@ public class EducateModuleWindowController {
 
         // рисование нужного кол-ва элементов в которых будут отображаться задания
         Button[][] OptionsArray = new Button[][] {{FirstOptionBTM, SecondOptionBTM, ThirdOptionBTM, FourthOptionBTM}};
-        TextArea[] FakeTextArea = new TextArea[]{TaskArea};
+        Label[] FakeTextArea = new Label[]{TaskArea};
         // рисование нужного кол-ва элементов в которых будут отображаться задания
 
         TasksInWindow = new AllTasksInWindow(FakeTextArea, OptionsArray, 1, TasksCount);
+
 
         final int CircleCount = TasksCount;
 

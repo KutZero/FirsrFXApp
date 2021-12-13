@@ -1,14 +1,11 @@
 package com.tusur.firsrfxapp;
 
-import javafx.scene.control.ButtonBase;
-import javafx.scene.control.Labeled;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 
 public class AllTasksInWindow {
     private TaskAndOntions[] TaskClass; // Блоки с данными по каждому заданию
 
-    private final TextArea[] TaskField; // Все поля label с выводом заданий
+    private final Label[] TaskField; // Все поля label с выводом заданий
     private final Button[][] OptionsFields; // по 4 кнопки для каждого задания. первое измерение - кол-во заданий, второе - кол-во кнопок в задании (всегда 4)
 
     private int[] ChosenAnswers; // Массив выбранных пользователем вариантов ответа (может и не стоит int делать, но без БД - хер его знает)
@@ -18,23 +15,17 @@ public class AllTasksInWindow {
     private final int ShowedTasksCount; // Кол-во одновременно выводимых заданий (равно общему кол-ву заданий)
 
     // как то надо еще передать массив вопросов полученных через класс BDController в выбранном окне
-    AllTasksInWindow(TextArea TaskField[], Button[][] OptionsFields, int ShowedTasksCount, int TasksCount){
+    AllTasksInWindow(Label TaskField[], Button[][] OptionsFields, int ShowedTasksCount, int TasksCount){
         this.TaskField = TaskField;
         this.OptionsFields = OptionsFields;
-        //this.OptionsCount = OptionsCount; // Кол-во вариантов ответа (всегда 4)
         this.ShowedTasksCount = ShowedTasksCount;
-
         this.TasksCount = TasksCount; // типо получил кол-во вопросов
         ChosenAnswers = new int[TasksCount];
-
 
         // Настроить все поля label
         for (int i = 0; i < TaskField.length; i++)
         {
             TaskField[i].setStyle("-fx-text-fill: #005aae ;") ;
-            TaskField[i].setEditable(false);
-            TaskField[i].setPrefColumnCount(120);
-            TaskField[i].setPrefRowCount(60);
         }
 
         TaskClass = new TaskAndOntions[TasksCount];
@@ -51,6 +42,7 @@ public class AllTasksInWindow {
                         "делаю 2 (вопрос " + (i+1) + ")", "делаю 3 (вопрос " + (i+1) + ")", "делаю 4 (вопрос " + (i+1) + ")", TaskField[i], OptionsFields[i]);
                 ChosenAnswers[i] = -1; // Типо не выбран ответ
             }
+
         }
         // Мой вариант, где все вопросы в одних и тех же местах выводятся
         else
@@ -61,9 +53,11 @@ public class AllTasksInWindow {
                         "делаю 2 (вопрос " + (i+1) + ")", "делаю 3 (вопрос " + (i+1) + ")", "делаю 4 (вопрос " + (i+1) + ")", TaskField[0], OptionsFields[0]);
                 ChosenAnswers[i] = -1; // Типо не выбран ответ
             }
+            //showTask(0);
         }
 
-        showTask(0);
+        //
+
     }
 
     /*public int getShowedTask() {
@@ -193,6 +187,7 @@ public class AllTasksInWindow {
             OptionsFields[0][ChosenAnswers[ShowedTask]].setStyle("-fx-background-color: green");
         }*/
 
+        // Вывод выбранных ответов для каждого задания
         for (int i = 0; i < TasksCount; i++)
         {
             System.out.printf(ChosenAnswers[i] + "\t");
