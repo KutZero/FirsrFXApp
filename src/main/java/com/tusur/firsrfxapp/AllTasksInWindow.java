@@ -188,11 +188,11 @@ public class AllTasksInWindow {
         }*/
 
         // Вывод выбранных ответов для каждого задания
-        for (int i = 0; i < TasksCount; i++)
+        /*for (int i = 0; i < TasksCount; i++)
         {
             System.out.printf(ChosenAnswers[i] + "\t");
         }
-        System.out.printf("\n");
+        System.out.printf("\n");*/
 
         if (ChosenAnswers[ShowedTask] != -1)
         {

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="688.0" prefWidth="1140.0" styleClass="SceneBackground" stylesheets="@../styleCSS/MainStyles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tusur.firsrfxapp.SingUpWindowController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints maxHeight="627.3333129882812" minHeight="10.0" prefHeight="627.3333129882812" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="340.0" minHeight="10.0" prefHeight="60.66668701171875" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="40.0" styleClass="MenuContainer" stylesheets="@../styleCSS/MainStyles.css" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="TOP" GridPane.vgrow="NEVER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="180.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="227.00003051757812" minWidth="10.0" prefWidth="175.6666259765625" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="299.3333740234375" minWidth="10.0" prefWidth="176.3333740234375" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="180.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="100.33332824707031" minHeight="10.0" prefHeight="97.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="94.66667175292969" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="89.33332824707031" minHeight="0.0" prefHeight="54.666656494140625" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="78.33331298828125" minHeight="0.0" prefHeight="51.333343505859375" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="65.33331298828125" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="109.66668701171875" minHeight="10.0" prefHeight="53.333343505859375" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="334.3333435058594" minHeight="10.0" prefHeight="75.66668701171875" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="334.3333435058594" minHeight="10.0" prefHeight="70.33331298828125" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <GridPane.margin>
+                <Insets top="30.0" />
+            </GridPane.margin>
+            <children>
+                <Label styleClass="MainHeadlne" stylesheets="@../styleCSS/MainStyles.css" text="Регистрация" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
+                <TextField fx:id="LoginField" maxHeight="-Infinity" prefHeight="36.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                    <GridPane.margin>
+                        <Insets />
+                    </GridPane.margin>
+                </TextField>
+                <TextField fx:id="PasswordField" maxHeight="-Infinity" prefHeight="36.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                    <GridPane.margin>
+                        <Insets top="14.0" />
+                    </GridPane.margin>
+                </TextField>
+            <TextField fx:id="NameField" maxHeight="-Infinity" prefHeight="36.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+               <GridPane.margin>
+                  <Insets top="14.0" />
+               </GridPane.margin>
+            </TextField>
+            <Button fx:id="SingUpBTM" mnemonicParsing="false" prefHeight="36.0" prefWidth="202.0" stylesheets="@../styleCSS/MainStyles.css" text="Зарегестрироваться" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="TOP">
+               <styleClass>
+                  <String fx:value="Button" />
+                  <String fx:value="BlueButton" />
+               </styleClass>
+               <GridPane.margin>
+                  <Insets top="48.0" />
+               </GridPane.margin>
+            </Button>
+            <Label fx:id="GoToSingInBTM" alignment="CENTER" prefHeight="17.0" prefWidth="208.0" styleClass="LabelButton" stylesheets="@../styleCSS/MainStyles.css" text="У меня уже есть аккаунт" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets top="10.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="LastNameField" maxHeight="-Infinity" prefHeight="36.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+               <GridPane.margin>
+                  <Insets top="14.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="PatronymicField" maxHeight="-Infinity" prefHeight="36.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
+               <GridPane.margin>
+                  <Insets top="14.0" />
+               </GridPane.margin>
+            </TextField>
+            </children>
+        </GridPane>
+        <ImageView fitHeight="49.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <image>
+                <Image url="@../images/image 3.png" />
+            </image>
+        </ImageView>
+    </children>
+</GridPane>

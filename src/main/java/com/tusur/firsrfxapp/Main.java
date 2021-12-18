@@ -10,11 +10,12 @@ import java.io.IOException;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+        //sing_up_window.fxml
+        //sing_in_window.fxml
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/tusur/firsrfxapp/fxmlFiles/sing_in_window.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1140, 688);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/tusur/firsrfxapp/fxmlFiles/educate_module_window.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 680, 560);
-
-        stage.setTitle("Educate Module");
+        stage.setTitle("Kompetenzen");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();

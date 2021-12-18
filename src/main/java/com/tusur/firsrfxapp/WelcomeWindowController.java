@@ -4,6 +4,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 
 public class WelcomeWindowController {
 
@@ -14,11 +16,17 @@ public class WelcomeWindowController {
     private URL location;
 
     @FXML
-    private Button BTMStartFirstTest;
+    private Label GoToMainMenuBTM;
+
+    @FXML
+    private Button GoToPrimaryTestBTM;
+
+    @FXML
+    private TextArea WelcomeText;
 
     @FXML
     void initialize() {
-        assert BTMStartFirstTest != null : "fx:id=\"BTMStartFirstTest\" was not injected: check your FXML file 'welcome-window.fxml'.";
+        WelcomeText.setEditable(false);
 
     }
 
