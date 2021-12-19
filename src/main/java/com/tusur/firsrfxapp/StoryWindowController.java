@@ -11,10 +11,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
-import java.sql.Connection;
+/*import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.ResultSet;
+import java.sql.ResultSet;*/
 
 public class StoryWindowController extends BaseController{
 
@@ -72,6 +72,8 @@ public class StoryWindowController extends BaseController{
         // Тут надо получить кол-во вопросов
 
 
+        BDController DBControlForModuleWindow = new BDController();
+        TasksCount = DBControlForModuleWindow.getTasksCount();
         String[][] TempForTasks = new String[TasksCount][4];
 
         /*BDController DBControlForModuleWindow = new BDController();
@@ -123,6 +125,7 @@ public class StoryWindowController extends BaseController{
         // Запрос к базе, получение кол-ва вопросов
 
         // рисование нужного кол-ва элементов в которых будут отображаться задания
+
         TextArea[][] OptionsArray = new TextArea[][] {{FirstOptionArea, SecondOptionArea, ThirdOptionArea, FourthOptionArea}};
         TextArea[] FakeTextArea = new TextArea[]{TaskArea};
         FakeTextArea[0].setEditable(false);
