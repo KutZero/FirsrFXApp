@@ -50,6 +50,7 @@ public class StoryWindowController extends BaseController{
     private BDController DBControlForModuleWindow; // Экземпляр класса для работы с бд в этом окне
     private static final int OptionsCount = 4; // Кол-во вариантов ответов
     private int TasksCount; // Общее кол-во заданий
+    private String DataBaseName;
     private AllTasksInWindow TasksInWindow; // Класс для работы с заданиями в окне
 
 
@@ -64,11 +65,50 @@ public class StoryWindowController extends BaseController{
 
         ////////////////////////////////////////////////////////////////////////////////////////////////
         // Тут надо получить кол-во вопросов
-        DBControlForModuleWindow = new BDController();
+
+        BDController DBControlForModuleWindow = new BDController();
+        Connection connectDB = DBControlForModuleWindow.getConnection();
         TasksCount = DBControlForModuleWindow.getTasksCount();
+        Statement statement = connectDB.createStatement();
+        DataBaseName = DBControlForModuleWindow.getDataBaseName();
         // Тут надо заполнить массив вопросами и ответами
         String[][] TempForTasks = new String[TasksCount][4];
-
+         for(int i = 0; i<TasksCount; i++)
+        {
+            try
+            {
+                String Question_text = "SELECT Story FROM " +DataBaseName+".stories where NUM = "+(i+1);
+                ResultSet Question_output = statement.executeQuery(Question_text);
+                while (Question_output.next())
+                {
+                    String text = Question_output.getString("Story");
+                    TempForTasks[i][0] = text;
+                    System.out.println("1Подстановка вопроса успешна");
+                }
+            }
+            catch (Exception exp)
+            {
+                System.out.println("Подстановка вопроса не выполнена, проверьте запрос");
+            }
+            for (int j = 0; j<4; j++)
+            {
+                try
+                {
+                    String Question_text = "SELECT otvet FROM " +DataBaseName+".otvetsstories where NumStory = "+(i+1);
+                    ResultSet Answer_output = statement.executeQuery(Question_text);
+                    while (Answer_output.next())
+                    {
+                        String text = Answer_output.getString("otvet");
+                        TempForTasks[i][j] = text;
+                        System.out.println("Подстановка ответа успешна");
+                    }
+                }
+                catch (Exception exp)
+                {
+                    System.out.println("Подстановка ответа не выполнена, проверьте запрос");
+                }
+            }
+        }
         /////////////////////////////////////////////////////////////////////////////////////////////////
 
         //CircleIndicator CircleIndArr = new CircleIndicator(CircleCount, CircleArea);
