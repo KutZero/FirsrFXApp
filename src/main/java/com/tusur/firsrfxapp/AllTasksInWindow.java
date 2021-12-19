@@ -124,20 +124,21 @@ public class AllTasksInWindow {
     }
 
     // Вывести предыдущее задание
-    public boolean showNextTask(Label PrevTaskBTM, Label NextTaskBTM)
+    public boolean showNextTask(Label PrevTaskBTM, Label NextTaskBTM, String NextWindow)
     {
         if (ShowedTask == TasksCount - 2){
             NextTaskBTM.setText("Завершить тест");
             NextTaskBTM.setOnMouseClicked(mouseEvent -> {
 
                 // Тут надо занести данные в базу
+
                 // Одномерный массив выбранных ответов (индекс - номер вопроса -1, значение - номер варианта ответа)
                 for (int i = 0; i < ChosenAnswers.length; i++)
                 {
                     System.out.printf(ChosenAnswers[i] + "\t");
                 }
 
-                Main.getNavigation().load("story_result_window.fxml").Show();
+                Main.getNavigation().load(NextWindow).Show();
             });
         }
 
@@ -155,7 +156,7 @@ public class AllTasksInWindow {
     }
 
     // Вывести следующее задание
-    public boolean showPrevTask(Label PrevTaskBTM, Label NextTaskBTM)
+    public boolean showPrevTask(Label PrevTaskBTM, Label NextTaskBTM, String NextWindow)
     {
         if(ShowedTask > 0)
         {
@@ -163,7 +164,7 @@ public class AllTasksInWindow {
             {
                 NextTaskBTM.setText("Следующий вопрос");
                 NextTaskBTM.setOnMouseClicked(mouseEvent -> {
-                    this.showNextTask(PrevTaskBTM, NextTaskBTM);
+                    this.showNextTask(PrevTaskBTM, NextTaskBTM, NextWindow);
                 });
             }
             showTask(--ShowedTask);

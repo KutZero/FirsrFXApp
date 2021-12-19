@@ -28,11 +28,11 @@ public class MainWindowController extends BaseController {
     @FXML
     void initialize() {
         GoToPrimaryTestBTM.setOnMouseClicked(mouseEvent -> {
-            // к первичному тесту
+            Main.getNavigation().load("primary_test_window.fxml").Show();
         });
 
         CoordinatorBTM.setOnMouseClicked(mouseEvent -> {
-            Main.getNavigation().load("educate_module_window.fxml").Show();
+            Main.getNavigation().load("story_window.fxml").Show();
         });
 
     }

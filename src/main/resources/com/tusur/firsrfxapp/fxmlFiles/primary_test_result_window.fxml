@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Rectangle?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="688.0" prefWidth="1140.0" styleClass="SceneBackground" stylesheets="@../styleCSS/MainStyles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tusur.firsrfxapp.PrimaryTestResultWindowController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints maxHeight="627.3333129882812" minHeight="10.0" prefHeight="627.3333129882812" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="340.0" minHeight="10.0" prefHeight="60.66668701171875" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="492.0" prefWidth="654.0" styleClass="MenuContainer" stylesheets="@../styleCSS/MainStyles.css" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="TOP" GridPane.vgrow="NEVER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="180.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="227.00003051757812" minWidth="10.0" prefWidth="159.3333740234375" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="299.3333740234375" minWidth="10.0" prefWidth="163.6666259765625" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="180.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="183.0" minHeight="10.0" prefHeight="84.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="408.6666717529297" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="408.6666717529297" minHeight="10.0" prefHeight="265.3333435058594" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="334.3333435058594" minHeight="10.0" prefHeight="68.66665649414062" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <GridPane.margin>
+                <Insets top="30.0" />
+            </GridPane.margin>
+            <children>
+                <Label styleClass="MainHeadlne" stylesheets="@../styleCSS/MainStyles.css" text="Результат" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#edeef0" height="41.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="300.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+                <Label fx:id="ResultField" styleClass="MainText" stylesheets="@../styleCSS/MainStyles.css" text="Правильных ответов: " GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                    <GridPane.margin>
+                        <Insets bottom="8.0" left="15.0" />
+                    </GridPane.margin>
+                </Label>
+                <Label fx:id="GoToMenuBTM" styleClass="LabelButton" stylesheets="@../styleCSS/MainStyles.css" text="Выйти в меню" GridPane.columnIndex="3" GridPane.halignment="CENTER">
+                    <GridPane.margin>
+                        <Insets left="40.0" />
+                    </GridPane.margin>
+                </Label>
+                <Label fx:id="GoToAnsBTM" styleClass="LabelButton" stylesheets="@../styleCSS/MainStyles.css" text="Посмотреть пояснения к ответам" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+            </children>
+        </GridPane>
+        <ImageView fitHeight="49.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <image>
+                <Image url="@../images/image 3.png" />
+            </image>
+        </ImageView>
+    </children>
+</GridPane>

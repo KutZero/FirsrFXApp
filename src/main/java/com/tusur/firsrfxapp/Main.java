@@ -21,7 +21,7 @@ public class Main extends Application {
         //sing_in_window.fxml
         //welcome_window.fxml
         //main_window.fxml
-        //educate_module_window.fxml
+        //story_window.fxml
 
         navigation = new Navigation(stage);
 

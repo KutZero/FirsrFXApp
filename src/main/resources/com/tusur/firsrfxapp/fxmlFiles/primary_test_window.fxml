@@ -1,606 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<ScrollPane fx:id="MainScreen" hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="664.0" vbarPolicy="ALWAYS" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tusur.firsrfxapp.PrimaryTestWindowController">
-    <content>
-        <AnchorPane fx:id="AnchorScreen" minHeight="0.0" minWidth="0.0" prefHeight="4400.0" prefWidth="664.0">
-            <children>
-                <Text fx:id="Title" fill="#005aae" layoutX="169.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Первичный тест" wrappingWidth="326.0">
-                    <font>
-                        <Font name="Arial" size="40.0" />
-                    </font>
-                </Text>
-                <Pane layoutX="14.0" layoutY="57.0" prefHeight="395.0" prefWidth="604.0">
-                    <children>
-                        <Pane fx:id="QuestionPane1" layoutX="1.0" layoutY="5.0" prefHeight="454.0" prefWidth="604.0" style="-fx-border-color: #005aae; -fx-border-width: 3;">
-                            <children>
-                                <Pane prefHeight="468.0" prefWidth="618.0">
-                                    <children>
-                                        <Pane fx:id="AnswerPane1" layoutX="17.0" layoutY="42.0" prefHeight="385.0" prefWidth="588.0">
-                                            <children>
-                                                <RadioButton fx:id="Answer1" alignment="CENTER" mnemonicParsing="false" prefHeight="85.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" />
-                                                <RadioButton fx:id="Answer2" alignment="CENTER" layoutY="100.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" />
-                                                <RadioButton fx:id="Answer3" alignment="CENTER" layoutY="185.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" />
-                                                <RadioButton fx:id="Answer4" alignment="CENTER" layoutY="290.0" mnemonicParsing="false" prefHeight="105.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" />
-                                            </children>
-                                        </Pane>
-                                        <Text fx:id="Question1" fill="#005aae" layoutX="17.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ключевыми критериями эффективности деятельности команды проекта являются:">
-                                            <font>
-                                                <Font size="14.0" />
-                                            </font>
-                                        </Text>
-                                    </children>
-                                </Pane>
-                            </children>
-                        </Pane>
-                        <Text fx:id="QuestionNumber1" fill="#005aae" strokeType="OUTSIDE" strokeWidth="0.0" text="Вопрос 1">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Text>
-                    </children>
-                </Pane>
-                <Pane layoutX="14.0" layoutY="544.0" prefHeight="389.0" prefWidth="604.0">
-                    <children>
-                        <Pane fx:id="QuestionPane2" layoutX="1.0" layoutY="5.0" prefHeight="256.0" prefWidth="604.0" style="-fx-border-color: #005aae; -fx-border-width: 3;">
-                            <children>
-                                <Pane prefHeight="458.0" prefWidth="608.0">
-                                    <children>
-                                        <Pane fx:id="AnswerPane2" layoutX="17.0" layoutY="42.0" prefHeight="246.0" prefWidth="588.0">
-                                            <children>
-                                                <RadioButton fx:id="Answer1_2" alignment="CENTER_LEFT" layoutY="91.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton">
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                                <RadioButton fx:id="Answer2_2" alignment="CENTER_LEFT" layoutY="121.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                                <RadioButton fx:id="Answer3_2" alignment="CENTER_LEFT" layoutY="151.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                                <RadioButton fx:id="Answer4_2" alignment="CENTER_LEFT" layoutY="181.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                            </children>
-                                        </Pane>
-                                        <Text fx:id="Question2" fill="#005aae" layoutX="17.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-                                            <font>
-                                                <Font size="14.0" />
-                                            </font>
-                                        </Text>
-                                    </children>
-                                </Pane>
-                            </children>
-                        </Pane>
-                        <Text fx:id="QuestionNumber2" fill="#005aae" strokeType="OUTSIDE" strokeWidth="0.0" text="Вопрос 2">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Text>
-                    </children>
-                </Pane>
-                <Pane layoutX="14.0" layoutY="833.0" prefHeight="389.0" prefWidth="604.0">
-                    <children>
-                        <Pane fx:id="QuestionPane3" layoutX="1.0" layoutY="5.0" prefHeight="105.0" prefWidth="604.0" style="-fx-border-color: #005aae; -fx-border-width: 3;">
-                            <children>
-                                <Pane prefHeight="458.0" prefWidth="608.0">
-                                    <children>
-                                        <Pane fx:id="AnswerPane3" layoutX="17.0" layoutY="42.0" prefHeight="395.0" prefWidth="588.0">
-                                            <children>
-                                                <RadioButton fx:id="Answer1_3" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="20.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                                <RadioButton fx:id="Answer2_3" alignment="CENTER_LEFT" layoutY="30.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                            </children>
-                                        </Pane>
-                                        <Text fx:id="Question3" fill="#005aae" layoutX="17.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-                                            <font>
-                                                <Font size="14.0" />
-                                            </font>
-                                        </Text>
-                                    </children>
-                                </Pane>
-                            </children>
-                        </Pane>
-                        <Text fx:id="QuestionNumber3" fill="#005aae" strokeType="OUTSIDE" strokeWidth="0.0" text="Вопрос 3">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Text>
-                    </children>
-                </Pane>
-                <Pane layoutX="14.0" layoutY="971.0" prefHeight="389.0" prefWidth="604.0">
-                    <children>
-                        <Pane fx:id="QuestionPane4" layoutX="1.0" layoutY="5.0" prefHeight="378.0" prefWidth="604.0" style="-fx-border-color: #005aae; -fx-border-width: 3;">
-                            <children>
-                                <Pane prefHeight="458.0" prefWidth="608.0">
-                                    <children>
-                                        <Pane fx:id="AnswerPane4" layoutX="17.0" layoutY="42.0" prefHeight="395.0" prefWidth="588.0">
-                                            <children>
-                                                <RadioButton fx:id="Answer1_4" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="60.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                                <RadioButton fx:id="Answer2_4" alignment="CENTER_LEFT" layoutY="81.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                                <RadioButton fx:id="Answer3_4" alignment="CENTER_LEFT" layoutY="179.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                                <RadioButton fx:id="Answer4_4" alignment="CENTER_LEFT" layoutY="249.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                            </children>
-                                        </Pane>
-                                        <Text fx:id="Question4" fill="#005aae" layoutX="17.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-                                            <font>
-                                                <Font size="14.0" />
-                                            </font>
-                                        </Text>
-                                    </children>
-                                </Pane>
-                            </children>
-                        </Pane>
-                        <Text fx:id="QuestionNumber4" fill="#005aae" strokeType="OUTSIDE" strokeWidth="0.0" text="Вопрос 4">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Text>
-                    </children>
-                </Pane>
-                <Pane layoutX="14.0" layoutY="1383.0" prefHeight="329.0" prefWidth="604.0">
-                    <children>
-                        <Pane fx:id="QuestionPane5" layoutX="1.0" layoutY="5.0" prefHeight="329.0" prefWidth="604.0" style="-fx-border-color: #005aae; -fx-border-width: 3;">
-                            <children>
-                                <Pane prefHeight="458.0" prefWidth="608.0">
-                                    <children>
-                                        <Pane fx:id="AnswerPane5" layoutX="17.0" layoutY="42.0" prefHeight="395.0" prefWidth="588.0">
-                                            <children>
-                                                <RadioButton fx:id="Answer1_5" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="53.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                                <RadioButton fx:id="Answer2_5" alignment="CENTER_LEFT" layoutY="71.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                                <RadioButton fx:id="Answer3_5" alignment="CENTER_LEFT" layoutY="142.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                                <RadioButton fx:id="Answer4_5" alignment="CENTER_LEFT" layoutY="213.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                            </children>
-                                        </Pane>
-                                        <Text fx:id="Question5" fill="#005aae" layoutX="17.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-                                            <font>
-                                                <Font size="14.0" />
-                                            </font>
-                                        </Text>
-                                    </children>
-                                </Pane>
-                            </children>
-                        </Pane>
-                        <Text fx:id="QuestionNumber5" fill="#005aae" strokeType="OUTSIDE" strokeWidth="0.0" text="Вопрос 5">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Text>
-                    </children>
-                </Pane>
-                <Pane layoutX="14.0" layoutY="1750.0" prefHeight="205.0" prefWidth="604.0">
-                    <children>
-                        <Pane fx:id="QuestionPane6" layoutX="1.0" layoutY="5.0" prefHeight="205.0" prefWidth="604.0" style="-fx-border-color: #005aae; -fx-border-width: 3;">
-                            <children>
-                                <Pane prefHeight="458.0" prefWidth="608.0">
-                                    <children>
-                                        <Pane fx:id="AnswerPane6" layoutX="17.0" layoutY="42.0" prefHeight="395.0" prefWidth="588.0">
-                                            <children>
-                                                <RadioButton fx:id="Answer1_6" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="20.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                                <RadioButton fx:id="Answer2_6" alignment="CENTER_LEFT" layoutY="40.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                                <RadioButton fx:id="Answer3_6" alignment="CENTER_LEFT" layoutY="80.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                                <RadioButton fx:id="Answer4_6" alignment="CENTER_LEFT" layoutY="120.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                            </children>
-                                        </Pane>
-                                        <Text fx:id="Question6" fill="#005aae" layoutX="17.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-                                            <font>
-                                                <Font size="14.0" />
-                                            </font>
-                                        </Text>
-                                    </children>
-                                </Pane>
-                            </children>
-                        </Pane>
-                        <Text fx:id="QuestionNumber6" fill="#005aae" strokeType="OUTSIDE" strokeWidth="0.0" text="Вопрос 6">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Text>
-                    </children>
-                </Pane>
-                <Pane layoutX="14.0" layoutY="1999.0" prefHeight="8329.0" prefWidth="604.0">
-                    <children>
-                        <Pane fx:id="QuestionPane7" layoutX="1.0" layoutY="5.0" prefHeight="415.0" prefWidth="604.0" style="-fx-border-color: #005aae; -fx-border-width: 3;">
-                            <children>
-                                <Pane prefHeight="458.0" prefWidth="608.0">
-                                    <children>
-                                        <Pane fx:id="AnswerPane7" layoutX="17.0" layoutY="42.0" prefHeight="395.0" prefWidth="588.0">
-                                            <children>
-                                                <RadioButton fx:id="Answer1_7" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="75.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                                <RadioButton fx:id="Answer2_7" alignment="CENTER_LEFT" layoutY="91.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                                <RadioButton fx:id="Answer3_7" alignment="CENTER_LEFT" layoutY="185.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                                <RadioButton fx:id="Answer4_7" alignment="CENTER_LEFT" layoutY="280.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                            </children>
-                                        </Pane>
-                                        <Text fx:id="Question7" fill="#005aae" layoutX="17.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-                                            <font>
-                                                <Font size="14.0" />
-                                            </font>
-                                        </Text>
-                                    </children>
-                                </Pane>
-                            </children>
-                        </Pane>
-                        <Text fx:id="QuestionNumber7" fill="#005aae" strokeType="OUTSIDE" strokeWidth="0.0" text="Вопрос 7">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Text>
-                    </children>
-                </Pane>
-                <Pane layoutX="14.0" layoutY="2460.0" prefHeight="389.0" prefWidth="604.0">
-                    <children>
-                        <Pane fx:id="QuestionPane8" layoutX="1.0" layoutY="5.0" prefHeight="205.0" prefWidth="604.0" style="-fx-border-color: #005aae; -fx-border-width: 3;">
-                            <children>
-                                <Pane prefHeight="458.0" prefWidth="608.0">
-                                    <children>
-                                        <Pane fx:id="AnswerPane8" layoutX="17.0" layoutY="42.0" prefHeight="395.0" prefWidth="588.0">
-                                            <children>
-                                                <RadioButton fx:id="Answer1_8" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="20.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                                <RadioButton fx:id="Answer2_8" alignment="CENTER_LEFT" layoutY="40.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                                <RadioButton fx:id="Answer3_8" alignment="CENTER_LEFT" layoutY="80.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                                <RadioButton fx:id="Answer4_8" alignment="CENTER_LEFT" layoutY="120.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                            </children>
-                                        </Pane>
-                                        <Text fx:id="Question8" fill="#005aae" layoutX="17.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-                                            <font>
-                                                <Font size="14.0" />
-                                            </font>
-                                        </Text>
-                                    </children>
-                                </Pane>
-                            </children>
-                        </Pane>
-                        <Text fx:id="QuestionNumber8" fill="#005aae" strokeType="OUTSIDE" strokeWidth="0.0" text="Вопрос 8">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Text>
-                    </children>
-                </Pane>
-                <Pane layoutX="14.0" layoutY="2715.0" prefHeight="389.0" prefWidth="604.0">
-                    <children>
-                        <Pane fx:id="QuestionPane9" layoutX="1.0" layoutY="5.0" prefHeight="105.0" prefWidth="604.0" style="-fx-border-color: #005aae; -fx-border-width: 3;">
-                            <children>
-                                <Pane prefHeight="458.0" prefWidth="608.0">
-                                    <children>
-                                        <Pane fx:id="AnswerPane9" layoutX="17.0" layoutY="42.0" prefHeight="395.0" prefWidth="588.0">
-                                            <children>
-                                                <RadioButton fx:id="Answer1_9" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="20.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                                <RadioButton fx:id="Answer2_9" alignment="CENTER_LEFT" layoutY="30.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                            </children>
-                                        </Pane>
-                                        <Text fx:id="Question9" fill="#005aae" layoutX="17.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-                                            <font>
-                                                <Font size="14.0" />
-                                            </font>
-                                        </Text>
-                                    </children>
-                                </Pane>
-                            </children>
-                        </Pane>
-                        <Text fx:id="QuestionNumber9" fill="#005aae" strokeType="OUTSIDE" strokeWidth="0.0" text="Вопрос 9">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Text>
-                    </children>
-                </Pane>
-                <Pane layoutX="14.0" layoutY="2876.0" prefHeight="389.0" prefWidth="604.0">
-                    <children>
-                        <Pane fx:id="QuestionPane10" layoutX="1.0" layoutY="5.0" prefHeight="205.0" prefWidth="604.0" style="-fx-border-color: #005aae; -fx-border-width: 3;">
-                            <children>
-                                <Pane prefHeight="458.0" prefWidth="608.0">
-                                    <children>
-                                        <Pane fx:id="AnswerPane10" layoutX="17.0" layoutY="42.0" prefHeight="395.0" prefWidth="588.0">
-                                            <children>
-                                                <RadioButton fx:id="Answer1_10" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="20.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" />
-                                                <RadioButton fx:id="Answer2_10" alignment="CENTER_LEFT" layoutY="40.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" />
-                                                <RadioButton fx:id="Answer3_10" alignment="CENTER_LEFT" layoutY="80.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" />
-                                                <RadioButton fx:id="Answer4_10" alignment="CENTER_LEFT" layoutY="120.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" />
-                                            </children>
-                                        </Pane>
-                                        <Text fx:id="Question10" fill="#005aae" layoutX="17.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-                                            <font>
-                                                <Font size="14.0" />
-                                            </font>
-                                        </Text>
-                                    </children>
-                                </Pane>
-                            </children>
-                        </Pane>
-                        <Text fx:id="QuestionNumber10" fill="#005aae" strokeType="OUTSIDE" strokeWidth="0.0" text="Вопрос 10">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Text>
-                    </children>
-                </Pane>
-                <Pane layoutX="14.0" layoutY="3124.0" prefHeight="389.0" prefWidth="604.0">
-                    <children>
-                        <Pane fx:id="QuestionPane11" layoutX="1.0" layoutY="5.0" prefHeight="329.0" prefWidth="604.0" style="-fx-border-color: #005aae; -fx-border-width: 3;">
-                            <children>
-                                <Pane prefHeight="458.0" prefWidth="608.0">
-                                    <children>
-                                        <Pane fx:id="AnswerPane11" layoutX="17.0" layoutY="42.0" prefHeight="395.0" prefWidth="588.0">
-                                            <children>
-                                                <RadioButton fx:id="Answer1_11" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="53.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                                <RadioButton fx:id="Answer2_11" alignment="CENTER_LEFT" layoutY="71.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                                <RadioButton fx:id="Answer3_11" alignment="CENTER_LEFT" layoutY="142.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                                <RadioButton fx:id="Answer4_11" alignment="CENTER_LEFT" layoutY="213.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                            </children>
-                                        </Pane>
-                                        <Text fx:id="Question11" fill="#005aae" layoutX="17.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-                                            <font>
-                                                <Font size="14.0" />
-                                            </font>
-                                        </Text>
-                                    </children>
-                                </Pane>
-                            </children>
-                        </Pane>
-                        <Text fx:id="QuestionNumber11" fill="#005aae" strokeType="OUTSIDE" strokeWidth="0.0" text="Вопрос 11">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Text>
-                    </children>
-                </Pane>
-                <Pane layoutX="14.0" layoutY="3500.0" prefHeight="389.0" prefWidth="604.0">
-                    <children>
-                        <Pane fx:id="QuestionPane12" layoutX="1.0" layoutY="5.0" prefHeight="125.0" prefWidth="604.0" style="-fx-border-color: #005aae; -fx-border-width: 3;">
-                            <children>
-                                <Pane prefHeight="458.0" prefWidth="608.0">
-                                    <children>
-                                        <Pane fx:id="AnswerPane12" layoutX="17.0" layoutY="42.0" prefHeight="105.0" prefWidth="588.0">
-                                            <children>
-                                                <RadioButton fx:id="Answer1_12" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="20.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                                <RadioButton fx:id="Answer2_12" alignment="CENTER_LEFT" layoutY="40.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                            </children>
-                                        </Pane>
-                                        <Text fx:id="Question12" fill="#005aae" layoutX="17.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-                                            <font>
-                                                <Font size="14.0" />
-                                            </font>
-                                        </Text>
-                                    </children>
-                                </Pane>
-                            </children>
-                        </Pane>
-                        <Text fx:id="QuestionNumber12" fill="#005aae" strokeType="OUTSIDE" strokeWidth="0.0" text="Вопрос 12">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Text>
-                    </children>
-                </Pane>
-                <Pane layoutX="14.0" layoutY="3673.0" prefHeight="389.0" prefWidth="604.0">
-                    <children>
-                        <Pane fx:id="QuestionPane13" layoutX="1.0" layoutY="5.0" prefHeight="205.0" prefWidth="604.0" style="-fx-border-color: #005aae; -fx-border-width: 3;">
-                            <children>
-                                <Pane prefHeight="458.0" prefWidth="608.0">
-                                    <children>
-                                        <Pane fx:id="AnswerPane13" layoutX="17.0" layoutY="42.0" prefHeight="395.0" prefWidth="588.0">
-                                            <children>
-                                                <RadioButton fx:id="Answer1_13" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="20.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                                <RadioButton fx:id="Answer2_13" alignment="CENTER_LEFT" layoutY="40.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                                <RadioButton fx:id="Answer3_13" alignment="CENTER_LEFT" layoutY="80.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                                <RadioButton fx:id="Answer4_13" alignment="CENTER_LEFT" layoutY="120.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                            </children>
-                                        </Pane>
-                                        <Text fx:id="Question13" fill="#005aae" layoutX="17.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-                                            <font>
-                                                <Font size="14.0" />
-                                            </font>
-                                        </Text>
-                                    </children>
-                                </Pane>
-                            </children>
-                        </Pane>
-                        <Text fx:id="QuestionNumber13" fill="#005aae" strokeType="OUTSIDE" strokeWidth="0.0" text="Вопрос 13">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Text>
-                    </children>
-                </Pane>
-                <Pane layoutX="14.0" layoutY="3929.0" prefHeight="389.0" prefWidth="604.0">
-                    <children>
-                        <Pane fx:id="QuestionPane14" layoutX="1.0" layoutY="5.0" prefHeight="155.0" prefWidth="604.0" style="-fx-border-color: #005aae; -fx-border-width: 3;">
-                            <children>
-                                <Pane prefHeight="458.0" prefWidth="608.0">
-                                    <children>
-                                        <Pane fx:id="AnswerPane14" layoutX="17.0" layoutY="42.0" prefHeight="395.0" prefWidth="588.0">
-                                            <children>
-                                                <RadioButton fx:id="Answer1_14" alignment="CENTER_LEFT" layoutY="30.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                                <RadioButton fx:id="Answer2_14" alignment="CENTER_LEFT" layoutY="70.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                            </children>
-                                        </Pane>
-                                        <Text fx:id="Question14" fill="#005aae" layoutX="17.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-                                            <font>
-                                                <Font size="14.0" />
-                                            </font>
-                                        </Text>
-                                    </children>
-                                </Pane>
-                            </children>
-                        </Pane>
-                        <Text fx:id="QuestionNumber14" fill="#005aae" strokeType="OUTSIDE" strokeWidth="0.0" text="Вопрос 14">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Text>
-                    </children>
-                </Pane>
-                <Pane layoutX="14.0" layoutY="4131.0" prefHeight="389.0" prefWidth="604.0">
-                    <children>
-                        <Pane fx:id="QuestionPane15" layoutX="1.0" layoutY="5.0" prefHeight="205.0" prefWidth="604.0" style="-fx-border-color: #005aae; -fx-border-width: 3;">
-                            <children>
-                                <Pane prefHeight="458.0" prefWidth="608.0">
-                                    <children>
-                                        <Pane fx:id="AnswerPane15" layoutX="17.0" layoutY="42.0" prefHeight="395.0" prefWidth="588.0">
-                                            <children>
-                                                <RadioButton fx:id="Answer1_15" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="20.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                                <RadioButton fx:id="Answer2_15" alignment="CENTER_LEFT" layoutY="40.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                                <RadioButton fx:id="Answer3_15" alignment="CENTER_LEFT" layoutY="80.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                                <RadioButton fx:id="Answer4_15" alignment="CENTER_LEFT" layoutY="120.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="515.0" style="-fx-background-color: #C4C4C4;" text="RadioButton" >
-                                                    <font>
-                                                        <Font size="13.0" />
-                                                    </font></RadioButton>
-                                            </children>
-                                        </Pane>
-                                        <Text fx:id="Question15" fill="#005aae" layoutX="17.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-                                            <font>
-                                                <Font size="14.0" />
-                                            </font>
-                                        </Text>
-                                    </children>
-                                </Pane>
-                            </children>
-                        </Pane>
-                        <Text fx:id="QuestionNumber15" fill="#005aae" strokeType="OUTSIDE" strokeWidth="0.0" text="Вопрос 15">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Text>
-                    </children>
-                </Pane>
-                <Button fx:id="Button_End" style="-fx-background-color: #0071ae;" layoutX="262.0" layoutY="4363.0" mnemonicParsing="false" text="Завершить тест">
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-                </Button>
-            </children></AnchorPane>
-    </content>
-</ScrollPane>
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="688.0" prefWidth="1140.0" styleClass="MenuContainer" stylesheets="@../styleCSS/MainStyles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tusur.firsrfxapp.PrimaryTestWindowController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="200.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="200.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints maxHeight="627.3333129882812" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="627.3333129882812" minHeight="10.0" prefHeight="79.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="627.3333129882812" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="627.3333129882812" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="118.0" minHeight="10.0" prefHeight="117.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="106.0" minHeight="10.0" prefHeight="106.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="110.0" minHeight="10.0" prefHeight="106.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="114.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="340.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <Label styleClass="MainHeadlne" stylesheets="@../styleCSS/MainStyles.css" text="Первичное тестирование" GridPane.columnSpan="3" GridPane.halignment="CENTER" />
+        <Label fx:id="ExitBTM" styleClass="LabelButton" stylesheets="@../styleCSS/MainStyles.css" text="Выйти в меню" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
+            <GridPane.margin>
+                <Insets right="54.0" />
+            </GridPane.margin>
+        </Label>
+        <TextArea fx:id="TaskArea" editable="false" prefHeight="128.0" prefWidth="468.0" stylesheets="@../styleCSS/MainStyles.css" text="Вы были назначены “координатором 2” команды. Вам сообщили, что “координатор 1” выполнял свою задачу&#10;неэффективно, за счет чего КПД команды снизился и нарушился график выполнения работ. Заказчику это не&#10;" wrapText="true" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+            <GridPane.margin>
+                <Insets left="54.0" right="54.0" />
+            </GridPane.margin>
+            <styleClass>
+                <String fx:value="CommonText" />
+                <String fx:value="CommonTextCenter" />
+            </styleClass>
+        </TextArea>
+        <Label styleClass="MainText" stylesheets="@../styleCSS/MainStyles.css" text="Выберите правильный ответ" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+        <TextArea fx:id="FirstOptionArea" editable="false" prefHeight="128.0" prefWidth="468.0" styleClass="CommonText" stylesheets="@../styleCSS/MainStyles.css" text="Соберу участников команды и спрошу их о том, что, по их мнению, привело к увольнению “координатора 1”, что он делал не так. Проведу анализ полученной информации. На основании проведенного анализа составлю стратегию, противоположную стратегии прошлого координатора, и начну вносить изменения в состав команды. При необходимости, уволю, по-своему мнению, недостаточно активных членов команды и проведу набор новых кадров." wrapText="true" GridPane.columnSpan="3" GridPane.rowIndex="4">
+            <GridPane.margin>
+                <Insets bottom="10.0" left="96.0" right="54.0" top="10.0" />
+            </GridPane.margin>
+        </TextArea>
+        <TextArea fx:id="SecondOptionArea" editable="false" prefHeight="128.0" prefWidth="468.0" styleClass="CommonText" stylesheets="@../styleCSS/MainStyles.css" text="Пригрожу участникам команды жалобой начальству и внесу немедленные изменения, которые смогут повысить КПД команды, не оповещая об этом остальную команду. При необходимости, самостоятельно внесу дополнительные изменения позже." wrapText="true" GridPane.columnSpan="3" GridPane.rowIndex="5">
+            <GridPane.margin>
+                <Insets bottom="10.0" left="96.0" right="54.0" top="10.0" />
+            </GridPane.margin>
+        </TextArea>
+        <TextArea fx:id="ThirdOptionArea" editable="false" prefHeight="128.0" prefWidth="468.0" styleClass="CommonText" stylesheets="@../styleCSS/MainStyles.css" text="Проведу переговоры с заказчиком на предмет требований и сроков к проекту. Соберу участников команды и спрошу их о том, что, по их мнению, привело к снижению КПД и нарушению графика выполнения работ. Проведу анализ полученной информации. На основании проведенного анализа внесу изменения в работу команды и разработаю новый график выполнения работ. " wrapText="true" GridPane.columnSpan="3" GridPane.rowIndex="6">
+            <GridPane.margin>
+                <Insets bottom="10.0" left="96.0" right="54.0" top="10.0" />
+            </GridPane.margin>
+        </TextArea>
+        <TextArea fx:id="FourthOptionArea" editable="false" prefHeight="128.0" prefWidth="468.0" styleClass="CommonText" stylesheets="@../styleCSS/MainStyles.css" text="Возьму всю работу команды на себя. Команда работает как единый организм, но от того, что 1 член команды работает неэффективно, команда не должна рушиться и график не должен нарушиться. Если действия команды привели к увольнению “координатора 1”, значит, вся команда плохо работала." wrapText="true" GridPane.columnSpan="3" GridPane.rowIndex="7">
+            <GridPane.margin>
+                <Insets bottom="10.0" left="96.0" right="54.0" top="10.0" />
+            </GridPane.margin>
+        </TextArea>
+        <Label styleClass="BigLetters" stylesheets="@../styleCSS/MainStyles.css" text="A" GridPane.rowIndex="4">
+            <GridPane.margin>
+                <Insets left="54.0" />
+            </GridPane.margin>
+        </Label>
+        <Label styleClass="BigLetters" stylesheets="@../styleCSS/MainStyles.css" text="B" GridPane.rowIndex="5">
+            <GridPane.margin>
+                <Insets left="54.0" />
+            </GridPane.margin>
+        </Label>
+        <Label styleClass="BigLetters" stylesheets="@../styleCSS/MainStyles.css" text="C" GridPane.rowIndex="6">
+            <GridPane.margin>
+                <Insets left="54.0" />
+            </GridPane.margin>
+        </Label>
+        <Label styleClass="BigLetters" stylesheets="@../styleCSS/MainStyles.css" text="D" GridPane.rowIndex="7">
+            <GridPane.margin>
+                <Insets left="54.0" />
+            </GridPane.margin>
+        </Label>
+        <Label fx:id="NextTaskBTM" styleClass="LabelButton" stylesheets="@../styleCSS/MainStyles.css" text="Следующий вопрос" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="8" GridPane.valignment="TOP">
+            <GridPane.margin>
+                <Insets right="54.0" />
+            </GridPane.margin>
+        </Label>
+        <Label fx:id="PrevTaskBTM" styleClass="LabelButton" stylesheets="@../styleCSS/MainStyles.css" text="Предыдущий вопрос" GridPane.halignment="LEFT" GridPane.rowIndex="8" GridPane.valignment="TOP">
+            <GridPane.margin>
+                <Insets left="54.0" />
+            </GridPane.margin>
+        </Label>
+        <Pane fx:id="CircleArea" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="29.0" prefWidth="362.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="TOP" />
+      <Label fx:id="StoryDescriptorLabel" styleClass="MainText" stylesheets="@../styleCSS/MainStyles.css" text="Вопрос #" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+    </children>
+</GridPane>

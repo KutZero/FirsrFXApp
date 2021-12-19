@@ -21,11 +21,14 @@ public class StoryResultWindowController extends BaseController{
     private Label GoToMenuBTM;
 
     @FXML
+    private Label ResultField;
+
+    @FXML
     void initialize() {
         GoToMenuBTM.setOnMouseClicked(mouseEvent -> {
             Main.getNavigation().load("main_window.fxml").Show();
         });
-
+        //
     }
 
 }

@@ -32,6 +32,9 @@ public class WelcomeWindowController extends BaseController{
             Main.getNavigation().load("main_window.fxml").Show();
         });
 
+        GoToPrimaryTestBTM.setOnMouseClicked(mouseEvent -> {
+            Main.getNavigation().load("primary_test_window.fxml").Show();
+        });
 
     }
 
