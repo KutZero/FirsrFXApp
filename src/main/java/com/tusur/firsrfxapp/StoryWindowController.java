@@ -11,6 +11,11 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.ResultSet;
+
 public class StoryWindowController extends BaseController{
 
     @FXML
@@ -66,7 +71,10 @@ public class StoryWindowController extends BaseController{
         ////////////////////////////////////////////////////////////////////////////////////////////////
         // Тут надо получить кол-во вопросов
 
-        BDController DBControlForModuleWindow = new BDController();
+
+        String[][] TempForTasks = new String[TasksCount][4];
+
+        /*BDController DBControlForModuleWindow = new BDController();
         Connection connectDB = DBControlForModuleWindow.getConnection();
         TasksCount = DBControlForModuleWindow.getTasksCount();
         Statement statement = connectDB.createStatement();
@@ -108,7 +116,7 @@ public class StoryWindowController extends BaseController{
                     System.out.println("Подстановка ответа не выполнена, проверьте запрос");
                 }
             }
-        }
+        }*/
         /////////////////////////////////////////////////////////////////////////////////////////////////
 
         //CircleIndicator CircleIndArr = new CircleIndicator(CircleCount, CircleArea);
@@ -139,12 +147,14 @@ public class StoryWindowController extends BaseController{
 
         NextTaskBTM.setOnMouseClicked(mouseEvent -> {
             // меняются вопросы и варианты ответов
-            TasksInWindow.showNextTask(PrevTaskBTM, NextTaskBTM, "story_result_window.fxml");
+            TasksInWindow.showNextTask(PrevTaskBTM, NextTaskBTM, "story_result_window.fxml",
+                    "любая нужная тебе строка для записи в нужную таблицу");
         });
 
         PrevTaskBTM.setOnMouseClicked(mouseEvent -> {
             // меняются вопросы и варианты ответов
-            TasksInWindow.showPrevTask(PrevTaskBTM, NextTaskBTM, "primary_test_result_window.fxml");
+            TasksInWindow.showPrevTask(PrevTaskBTM, NextTaskBTM, "primary_test_result_window.fxml",
+                    "любая нужная тебе строка для записи в нужную таблицу");
         });
 
         ExitBTM.setOnMouseClicked(mouseEvent -> {

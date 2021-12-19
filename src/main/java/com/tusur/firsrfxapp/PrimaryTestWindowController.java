@@ -96,12 +96,12 @@ public class PrimaryTestWindowController extends BaseController{
 
         NextTaskBTM.setOnMouseClicked(mouseEvent -> {
             // меняются вопросы и варианты ответов
-            TasksInWindow.showNextTask(PrevTaskBTM, NextTaskBTM, "primary_test_result_window.fxml");
+            TasksInWindow.showNextTask(PrevTaskBTM, NextTaskBTM, "primary_test_result_window.fxml", "любая нужная тебе строка для записи в нужную таблицу");
         });
 
         PrevTaskBTM.setOnMouseClicked(mouseEvent -> {
             // меняются вопросы и варианты ответов
-            TasksInWindow.showPrevTask(PrevTaskBTM, NextTaskBTM, "primary_test_result_window.fxml");
+            TasksInWindow.showPrevTask(PrevTaskBTM, NextTaskBTM, "primary_test_result_window.fxml", "любая нужная тебе строка для записи в нужную таблицу");
         });
 
         ExitBTM.setOnMouseClicked(mouseEvent -> {

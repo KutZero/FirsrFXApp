@@ -26,11 +26,10 @@ public class AllTasksInWindow {
    // private final int ShowedTasksCount; // Кол-во одновременно выводимых заданий (равно общему кол-ву заданий)
 
     
-    BDController DBControlForModuleWindow = new BDController();
+    /*BDController DBControlForModuleWindow = new BDController();
     Connection connectDB = DBControlForModuleWindow.getConnection();
-    //TasksCount = DBControlForModuleWindow.getTasksCount();//для историй
     Statement statement = connectDB.createStatement();
-    DataBaseName = DBControlForModuleWindow.getDataBaseName();
+    DataBaseName = DBControlForModuleWindow.getDataBaseName();*/
     
     // как то надо еще передать массив вопросов полученных через класс BDController в выбранном окне
     AllTasksInWindow(TextArea TaskField[], TextArea[][] OptionsFields, Pane CircleArea,
@@ -137,7 +136,7 @@ public class AllTasksInWindow {
     }
 
     // Вывести предыдущее задание
-    public boolean showNextTask(Label PrevTaskBTM, Label NextTaskBTM, String NextWindow)
+    public boolean showNextTask(Label PrevTaskBTM, Label NextTaskBTM, String NextWindow, String Query)
     {
         if (ShowedTask == TasksCount - 2){
             NextTaskBTM.setText("Завершить тест");
@@ -146,7 +145,7 @@ public class AllTasksInWindow {
                 // Тут надо занести данные в базу
 
                 // Одномерный массив выбранных ответов (индекс - номер вопроса -1, значение - номер варианта ответа)
-                for (int i = 0; i < ChosenAnswers.length; i++)
+                /*for (int i = 0; i < ChosenAnswers.length; i++)
                 {
                     try {
                         String PasteAsk = "INSERT INTO " + DataBaseName + ".stata_stories(Num, Num_student, Otvet, Num_popytki) VALUES (" + (i + 1) + "," + 1 + "," + ChosenAnswers[i] + "," + 1 + ")";
@@ -156,7 +155,7 @@ public class AllTasksInWindow {
                         System.out.println("Вставка ответа не удалась, проверьте запрос");
                     }//создать запись
                     System.out.printf(ChosenAnswers[i] + "\t");
-                }
+                }*/
 
                 Main.getNavigation().load(NextWindow).Show();
             });
@@ -176,7 +175,7 @@ public class AllTasksInWindow {
     }
 
     // Вывести следующее задание
-    public boolean showPrevTask(Label PrevTaskBTM, Label NextTaskBTM, String NextWindow)
+    public boolean showPrevTask(Label PrevTaskBTM, Label NextTaskBTM, String NextWindow, String Query)
     {
         if(ShowedTask > 0)
         {
@@ -184,7 +183,7 @@ public class AllTasksInWindow {
             {
                 NextTaskBTM.setText("Следующий вопрос");
                 NextTaskBTM.setOnMouseClicked(mouseEvent -> {
-                    this.showNextTask(PrevTaskBTM, NextTaskBTM, NextWindow);
+                    this.showNextTask(PrevTaskBTM, NextTaskBTM, NextWindow, Query);
                 });
             }
             showTask(--ShowedTask);
