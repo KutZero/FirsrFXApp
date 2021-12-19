@@ -1,6 +1,8 @@
 package com.tusur.firsrfxapp;
 
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
 
 public class AllTasksInWindow {
     private TaskAndOntions[] TaskClass; // Блоки с данными по каждому заданию
@@ -12,18 +14,22 @@ public class AllTasksInWindow {
     private final int TasksCount; // Количество вопросов
     private int ShowedTask; // Показываемое задание
     private static final int OptionsCount = 4; // Кол-во вариантов ответа (всегда 4)
-    private final Label TaskDescriptor;
-    private String TaskDescriptorText;
+    private final Label TaskDescriptor; // Место для отображения номера задания/ истории
+    private String TaskDescriptorText; // Номер задания/истории
+    private final CircleIndicator CircleIndArr; // Индикаторы для заданий
    // private final int ShowedTasksCount; // Кол-во одновременно выводимых заданий (равно общему кол-ву заданий)
 
     // как то надо еще передать массив вопросов полученных через класс BDController в выбранном окне
-    AllTasksInWindow(TextArea TaskField[], TextArea[][] OptionsFields, int TasksCount, Label TaskDescriptor, String TaskDescriptorText){ //, int ShowedTasksCount
+    AllTasksInWindow(TextArea TaskField[], TextArea[][] OptionsFields, Pane CircleArea,
+                     int TasksCount, Label TaskDescriptor, String TaskDescriptorText){
         this.TaskField = TaskField;
         this.OptionsFields = OptionsFields;
         this.TaskDescriptor = TaskDescriptor;
         //this.ShowedTasksCount = ShowedTasksCount;
         this.TasksCount = TasksCount; // типо получил кол-во вопросов
         ChosenAnswers = new int[TasksCount];
+
+        CircleIndArr = new CircleIndicator(TasksCount, CircleArea, this);
 
         // Настроить все поля label
        /* for (int i = 0; i < TaskField.length; i++)
@@ -40,7 +46,6 @@ public class AllTasksInWindow {
         // Каждому TaskClass надо назначить свои вопросы, варианты ответа и места где они будут выводиться
 
         // Мой вариант, где все вопросы в одних и тех же местах выводятся
-
         for (int i = 0; i < TasksCount ; i++)
         {
             TaskClass[i] = new TaskAndOntions("Задание " + (i+1) + " сделайте то-то", "делаю 1 (вопрос " + (i+1) + ")",
@@ -48,9 +53,6 @@ public class AllTasksInWindow {
             ChosenAnswers[i] = -1; // Типо не выбран ответ
         }
         //showTask(0);
-
-        //
-
     }
 
     /*public int getShowedTask() {
@@ -103,26 +105,39 @@ public class AllTasksInWindow {
     }
 
     // Вывести предыдущее задание
-    public boolean showNextTask()
+    public boolean showNextTask(Label PrevTaskBTM, Label NextTaskBTM)
     {
-        if(ShowedTask < TasksCount - 1)
-        {
-            showTask(++ShowedTask);
-            return false;
+        if (ShowedTask == TasksCount - 2){
+            NextTaskBTM.setText("Завершить тест");
         }
 
+        if(ShowedTask < TasksCount - 1)
+        {
+            if(ShowedTask == 0)
+            {
+                PrevTaskBTM.setStyle("-fx-text-fill: #005AAE;");
+            }
+            showTask(++ShowedTask);
+            CircleIndArr.setNextActiveCircle();
+            return false;
+        }
         return true;
     }
 
     // Вывести следующее задание
-    public boolean showPrevTask()
+    public boolean showPrevTask(Label PrevTaskBTM, Label NextTaskBTM)
     {
         if(ShowedTask > 0)
         {
+            if (ShowedTask == TasksCount)
+            {
+                NextTaskBTM.setText("Следующий вопрос");
+            }
             showTask(--ShowedTask);
+            CircleIndArr.setPrevActiveCircle();
             return false;
         }
-
+        PrevTaskBTM.setStyle("-fx-text-fill: #93979C;");
         return true;
     }
 

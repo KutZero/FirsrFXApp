@@ -46,8 +46,7 @@ public class EducateModuleWindowController extends BaseController{
     @FXML
     private Circle[] Circles;
 
-    private final int CircleRadius = 5; // Радиус кружков индикатора
-    private final int CircleOffsetFac = 15; // Отступ между кружками индикатора
+
     //private final int NumOfOptions = 4; // Количество кнопок с вариантами ответов
     private BDController DBControlForModuleWindow; // Экземпляр класса для работы с бд в этом окне
     private static final int OptionsCount = 4; // Кол-во вариантов ответов
@@ -55,7 +54,7 @@ public class EducateModuleWindowController extends BaseController{
     private AllTasksInWindow TasksInWindow; // Класс для работы с заданиями в окне
 
     // Класс для обработки индикатора выбранного задания
-    private class CircleIndicator{
+    /*private class CircleIndicator{
         private final Circle[] Circles;
         private int ActiveCircle;
 
@@ -99,13 +98,12 @@ public class EducateModuleWindowController extends BaseController{
             }
             Circles[ActiveCircle].setFill(Paint.valueOf("#005aae"));
         }
-    }
+    }*/
 
     private void setMouseClickedHandler (TextArea CurrentArea) {
         CurrentArea.setOnMouseClicked(mouseEvent -> {
             TasksInWindow.setChosenOption(CurrentArea);
         });
-
     }
 
     @FXML
@@ -115,6 +113,9 @@ public class EducateModuleWindowController extends BaseController{
         DBControlForModuleWindow = new BDController();
         TasksCount = DBControlForModuleWindow.getTasksCount();
 
+
+        final int CircleCount = TasksCount;
+        //CircleIndicator CircleIndArr = new CircleIndicator(CircleCount, CircleArea);
         // Запрос к базе, получение кол-ва вопросов
 
         // рисование нужного кол-ва элементов в которых будут отображаться задания
@@ -126,15 +127,10 @@ public class EducateModuleWindowController extends BaseController{
         //Label[] FakeTextArea = new Label[]{TaskArea};
         // рисование нужного кол-ва элементов в которых будут отображаться задания
 
-        TasksInWindow = new AllTasksInWindow(FakeTextArea, OptionsArray, TasksCount, StoryDescriptorLabel, "Координатор история ");
-
-
-        final int CircleCount = TasksCount;
-
-        CircleArea.setPrefWidth(CircleCount * CircleOffsetFac - CircleRadius);
-        CircleIndicator CircleIndArr = new CircleIndicator(CircleCount);
-
+        TasksInWindow = new AllTasksInWindow(FakeTextArea, OptionsArray, CircleArea,
+                TasksCount, StoryDescriptorLabel, "Координатор история ");
         TasksInWindow.showTask(0);
+        PrevTaskBTM.setStyle("-fx-text-fill: #93979C;");
 
         // Установить обработчик нажатий всех кнопок
         for (int j = 0; j < OptionsArray[0].length; j++)
@@ -147,14 +143,18 @@ public class EducateModuleWindowController extends BaseController{
 
         NextTaskBTM.setOnMouseClicked(mouseEvent -> {
             // меняются вопросы и варианты ответов
-            TasksInWindow.showNextTask();
-            CircleIndArr.setNextActiveCircle();
+            TasksInWindow.showNextTask(PrevTaskBTM, NextTaskBTM);
+            //CircleIndArr.setNextActiveCircle();
         });
 
         PrevTaskBTM.setOnMouseClicked(mouseEvent -> {
             // меняются вопросы и варианты ответов
-            TasksInWindow.showPrevTask();
-            CircleIndArr.setPrevActiveCircle();
+            TasksInWindow.showPrevTask(PrevTaskBTM, NextTaskBTM);
+            //CircleIndArr.setPrevActiveCircle();
+        });
+
+        ExitBTM.setOnMouseClicked(mouseEvent -> {
+            Main.getNavigation().load("main_window.fxml").Show();
         });
 
         /*FirstOptionBTM.setOnMouseClicked(mouseEvent -> {
