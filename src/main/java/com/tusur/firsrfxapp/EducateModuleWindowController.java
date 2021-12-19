@@ -52,52 +52,6 @@ public class EducateModuleWindowController extends BaseController{
     private int TasksCount; // Общее кол-во заданий
     private AllTasksInWindow TasksInWindow; // Класс для работы с заданиями в окне
 
-    // Класс для обработки индикатора выбранного задания
-    /*private class CircleIndicator{
-        private final Circle[] Circles;
-        private int ActiveCircle;
-
-        public boolean setNextActiveCircle(){
-            if (ActiveCircle < Circles.length - 1)
-            {
-                Circles[ActiveCircle].setFill(Paint.valueOf("#c5c5c5"));
-                ActiveCircle++;
-                Circles[ActiveCircle].setFill(Paint.valueOf("#005aae"));
-                return false;
-            }
-            return true; // Выбран последний вопрос
-        }
-
-        public void setActiveCircle(int index){
-            Circles[ActiveCircle].setFill(Paint.valueOf("#c5c5c5"));
-            ActiveCircle = index;
-            Circles[ActiveCircle].setFill(Paint.valueOf("#005aae"));
-        }
-
-        public boolean setPrevActiveCircle(){
-            if (ActiveCircle > 0)
-            {
-                Circles[ActiveCircle].setFill(Paint.valueOf("#c5c5c5"));
-                ActiveCircle--;
-                Circles[ActiveCircle].setFill(Paint.valueOf("#005aae"));
-                return false;
-            }
-            return true; // Выбран первый вопрос
-        }
-
-        // Конструктор
-        CircleIndicator(int CirclesCount){
-            Circles = new Circle[CirclesCount];
-            ActiveCircle = 0;
-            for (int i = 0; i < CirclesCount; i++)
-            {
-                Circles[i] = new Circle(CircleOffsetFac * i + CircleRadius,CircleRadius * 2, CircleRadius);
-                Circles[i].setFill(Paint.valueOf("#c5c5c5"));
-                CircleArea.getChildren().add(Circles[i]);
-            }
-            Circles[ActiveCircle].setFill(Paint.valueOf("#005aae"));
-        }
-    }*/
 
     private void setMouseClickedHandler (TextArea CurrentArea) {
         CurrentArea.setOnMouseClicked(mouseEvent -> {
@@ -108,12 +62,14 @@ public class EducateModuleWindowController extends BaseController{
     @FXML
     void initialize() {
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////
         // Тут надо получить кол-во вопросов
         DBControlForModuleWindow = new BDController();
         TasksCount = DBControlForModuleWindow.getTasksCount();
         // Тут надо заполнить массив вопросами и ответами
         String[][] TempForTasks = new String[TasksCount][4];
 
+        /////////////////////////////////////////////////////////////////////////////////////////////////
 
         //CircleIndicator CircleIndArr = new CircleIndicator(CircleCount, CircleArea);
         // Запрос к базе, получение кол-ва вопросов

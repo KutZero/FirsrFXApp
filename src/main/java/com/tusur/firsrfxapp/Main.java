@@ -33,7 +33,7 @@ public class Main extends Application {
         stage.setResizable(false);
         stage.show();
 
-        navigation.load("educate_module_window.fxml").Show();
+        navigation.load("sing_in_window.fxml").Show();
 
     }
 
