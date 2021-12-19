@@ -4,6 +4,11 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.ResultSet;
+
 public class AllTasksInWindow {
     private TaskAndOntions[] TaskClass; // Блоки с данными по каждому заданию
 
@@ -16,9 +21,17 @@ public class AllTasksInWindow {
     private static final int OptionsCount = 4; // Кол-во вариантов ответа (всегда 4)
     private final Label TaskDescriptor; // Место для отображения номера задания/ истории
     private String TaskDescriptorText; // Номер задания/истории
+    private String DataBaseName;
     private final CircleIndicator CircleIndArr; // Индикаторы для заданий
    // private final int ShowedTasksCount; // Кол-во одновременно выводимых заданий (равно общему кол-ву заданий)
 
+    
+    BDController DBControlForModuleWindow = new BDController();
+    Connection connectDB = DBControlForModuleWindow.getConnection();
+    //TasksCount = DBControlForModuleWindow.getTasksCount();//для историй
+    Statement statement = connectDB.createStatement();
+    DataBaseName = DBControlForModuleWindow.getDataBaseName();
+    
     // как то надо еще передать массив вопросов полученных через класс BDController в выбранном окне
     AllTasksInWindow(TextArea TaskField[], TextArea[][] OptionsFields, Pane CircleArea,
                      int TasksCount, Label TaskDescriptor, String TaskDescriptorText, String[][] TempForTasks){
@@ -134,6 +147,13 @@ public class AllTasksInWindow {
                 // Одномерный массив выбранных ответов (индекс - номер вопроса -1, значение - номер варианта ответа)
                 for (int i = 0; i < ChosenAnswers.length; i++)
                 {
+                    try {
+                        String PasteAsk = "INSERT INTO " + DataBaseName + ".stata_stories(Num, Num_student, Otvet, Num_popytki) VALUES (" + (i + 1) + "," + 1 + "," + ChosenAnswers[i] + "," + 1 + ")";
+                        statement.executeUpdate(PasteAsk);
+                        System.out.println("Вставка ответа успешна");
+                    } catch (Exception exp) {
+                        System.out.println("Вставка ответа не удалась, проверьте запрос");
+                    }//создать запись
                     System.out.printf(ChosenAnswers[i] + "\t");
                 }
 
