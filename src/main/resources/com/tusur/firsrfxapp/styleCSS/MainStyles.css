@@ -4,8 +4,8 @@
     -fx-background-color: #FFFFFF;
     -fx-background-radius: 3px;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.25), 4, 0.2, 0, 0);
-    -fx-pref-width: 654;
-    -fx-pref-height: 492;
+    /*-fx-pref-width: 654;
+    -fx-pref-height: 492;*/
 }
 
 /*-fx-font-family: Articulat CF;*/
@@ -25,8 +25,8 @@
 .LabelButton{
     -fx-font-style: normal;
     -fx-font-weight: 500;
-    -fx-font-size: 12px;
-    -fx-line-height: 14px;
+    -fx-font-size: 14px;
+    -fx-line-height: 17px;
     -fx-alignment: center;
     -fx-text-fill: #005AAE;
 }
@@ -39,6 +39,7 @@
     -fx-alignment: center;
     -fx-text-fill: #FFFFFF;
     -fx-background-radius: 3px;
+    -fx-background-color: #B5B5B5;
 }
 
 .GreenButton{
@@ -57,10 +58,34 @@
     -fx-font-style: normal;
     -fx-font-weight: 500;
     -fx-font-size: 14px;
-    -fx-line-height: 17px;
+    -fx-line-height: 18px;
     -fx-text-fill: #2E2E2E;
     -fx-wrap-text: true;
-    -fx-background-color: #C8C9CB;
-    -fx-border-radius 3px;
+    /*-fx-background-color: #C8C9CB;*/
+    -fx-text-alignment: center;
     -fx-control-inner-background: #EDEEF0;
+    -fx-border-color: #C8C9CB;
+    -fx-border-radius 3px;
+    -fx-border-width: 0.5px;
+}
+
+CommonTextCenter *.text{
+    -fx-text-alignment: center;
+}
+
+.MainText{
+    -fx-font-style: normal;
+    -fx-font-weight: 500;
+    -fx-font-size: 16px;
+    -fx-line-height: 20px;
+    -fx-control-inner-background: #303030;
+}
+
+.BigLetters{
+    -fx-font-style: normal;
+    -fx-font-weight: 500;
+    -fx-font-size: 36px;
+    -fx-line-height: 42px;
+    -fx-text-fill: #005AAE;
+
 }

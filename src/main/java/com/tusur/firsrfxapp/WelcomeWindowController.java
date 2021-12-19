@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
-public class WelcomeWindowController {
+public class WelcomeWindowController extends BaseController{
 
     @FXML
     private ResourceBundle resources;
@@ -27,6 +27,11 @@ public class WelcomeWindowController {
     @FXML
     void initialize() {
         WelcomeText.setEditable(false);
+
+        GoToMainMenuBTM.setOnMouseClicked(mouseEvent -> {
+            Main.getNavigation().load("main_window.fxml").Show();
+        });
+
 
     }
 

@@ -12,10 +12,10 @@ public class TaskAndOntions {
     private static final int OptionsCount = 4; // Кол-во вариантов ответа
 
     // Для этого конкретного задания
-    private Label TaskField; // Место, где выводится текст задания
-    private Button[] OptionsFields; // Массив элементов с вариантами ответа
+    private TextArea TaskField; // Место, где выводится текст задания
+    private TextArea[] OptionsFields; // Массив элементов с вариантами ответа
 
-    TaskAndOntions(String Task, String op1, String op2, String op3, String op4, Label TaskField, Button[] OptionsFields) {
+    TaskAndOntions(String Task, String op1, String op2, String op3, String op4, TextArea TaskField, TextArea[] OptionsFields) {
         this.Task = Task;
         this.Options = new String[OptionsCount];
         this.Options[0] = op1;

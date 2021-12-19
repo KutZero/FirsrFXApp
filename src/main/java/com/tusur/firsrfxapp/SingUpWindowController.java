@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class SingUpWindowController {
+public class SingUpWindowController extends BaseController{
 
     @FXML
     private ResourceBundle resources;
@@ -43,6 +43,14 @@ public class SingUpWindowController {
         NameField.setPromptText("Имя");
         LastNameField.setPromptText("Фамилия");
         PatronymicField.setPromptText("Отчество");
+
+        GoToSingInBTM.setOnMouseClicked(mouseEvent -> {
+            Main.getNavigation().GoBack();
+        });
+
+        SingUpBTM.setOnMouseClicked(mouseEvent -> {
+            Main.getNavigation().load("welcome_window.fxml").Show();
+        });
 
     }
 

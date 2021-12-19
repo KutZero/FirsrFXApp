@@ -8,7 +8,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
-public class PrimaryTestWindowController
+public class PrimaryTestWindowController extends BaseController
 {
     //private int[] Questions = new int[15]; //заменить на получение из таблицы
     @FXML

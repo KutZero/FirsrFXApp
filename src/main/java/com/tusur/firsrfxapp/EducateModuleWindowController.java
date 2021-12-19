@@ -1,26 +1,17 @@
 package com.tusur.firsrfxapp;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.HPos;
-import javafx.geometry.Insets;
-import javafx.geometry.VPos;
-import javafx.scene.control.*;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.TextFlow;
 
-public class EducateModuleWindowController {
+public class EducateModuleWindowController extends BaseController{
 
     @FXML
     private Pane CircleArea;
@@ -29,7 +20,10 @@ public class EducateModuleWindowController {
     private Label ExitBTM;
 
     @FXML
-    private GridPane MainGridPane;
+    private TextArea FirstOptionArea;
+
+    @FXML
+    private TextArea FourthOptionArea;
 
     @FXML
     private Label NextTaskBTM;
@@ -37,23 +31,17 @@ public class EducateModuleWindowController {
     @FXML
     private Label PrevTaskBTM;
 
-    /*@FXML
-    private TextArea TaskArea;*/
+    @FXML
+    private TextArea SecondOptionArea;
 
     @FXML
-    private Label TaskArea;
+    private Label StoryDescriptorLabel;
 
     @FXML
-    private Button FirstOptionBTM;
+    private TextArea TaskArea;
 
     @FXML
-    private Button SecondOptionBTM;
-
-    @FXML
-    private Button ThirdOptionBTM;
-
-    @FXML
-    private Button FourthOptionBTM;
+    private TextArea ThirdOptionArea;
 
     @FXML
     private Circle[] Circles;
@@ -82,6 +70,12 @@ public class EducateModuleWindowController {
             return true; // Выбран последний вопрос
         }
 
+        public void setActiveCircle(int index){
+            Circles[ActiveCircle].setFill(Paint.valueOf("#c5c5c5"));
+            ActiveCircle = index;
+            Circles[ActiveCircle].setFill(Paint.valueOf("#005aae"));
+        }
+
         public boolean setPrevActiveCircle(){
             if (ActiveCircle > 0)
             {
@@ -93,6 +87,7 @@ public class EducateModuleWindowController {
             return true; // Выбран первый вопрос
         }
 
+        // Конструктор
         CircleIndicator(int CirclesCount){
             Circles = new Circle[CirclesCount];
             ActiveCircle = 0;
@@ -106,40 +101,9 @@ public class EducateModuleWindowController {
         }
     }
 
-    // Класс содержащий поля вопроса и 4 вариантов для 1 задания
-    /*private class TaskAndOntions{
-        private final String Task;
-        private final String[] Options;
-        private int ChosenOptionNum;
-
-        TaskAndOntions(String Task, String op1, String op2, String op3, String op4){
-            this.Task = Task;
-            this.Options = new String[4];
-            this.Options[0] = op1;
-            this.Options[1] = op1;
-            this.Options[2] = op1;
-            this.Options[3] = op1;
-            ChosenOptionNum = -1; // Не выбран ответ
-        }
-
-        public void setChosenOptionNum(int ChosenOptionNum){
-            this.ChosenOptionNum = ChosenOptionNum;
-        }
-
-        public void setActive()
-        {
-            FirstOptionBTM.setText(this.Options[0]);
-            SecondOptionBTM.setText(this.Options[1]);
-            ThirdOptionBTM.setText(this.Options[2]);
-            FourthOptionBTM.setText(this.Options[3]);
-
-        }
-    }*/
-
-    // Установить обработчик нажатий выбранной кнопоки
-    private void setMouseClickedHandler (Button CurrentButton) {
-        CurrentButton.setOnMouseClicked(mouseEvent -> {
-            TasksInWindow.setChosenOption(CurrentButton);
+    private void setMouseClickedHandler (TextArea CurrentArea) {
+        CurrentArea.setOnMouseClicked(mouseEvent -> {
+            TasksInWindow.setChosenOption(CurrentArea);
         });
 
     }
@@ -154,11 +118,15 @@ public class EducateModuleWindowController {
         // Запрос к базе, получение кол-ва вопросов
 
         // рисование нужного кол-ва элементов в которых будут отображаться задания
-        Button[][] OptionsArray = new Button[][] {{FirstOptionBTM, SecondOptionBTM, ThirdOptionBTM, FourthOptionBTM}};
-        Label[] FakeTextArea = new Label[]{TaskArea};
+        TextArea[][] OptionsArray = new TextArea[][] {{FirstOptionArea, SecondOptionArea, ThirdOptionArea, FourthOptionArea}};
+        TextArea[] FakeTextArea = new TextArea[]{TaskArea};
+        FakeTextArea[0].setEditable(false);
+        //FakeTextArea[0].setDisable(true);
+        //FakeTextArea[0].setFocusTraversable(false);
+        //Label[] FakeTextArea = new Label[]{TaskArea};
         // рисование нужного кол-ва элементов в которых будут отображаться задания
 
-        TasksInWindow = new AllTasksInWindow(FakeTextArea, OptionsArray, 1, TasksCount);
+        TasksInWindow = new AllTasksInWindow(FakeTextArea, OptionsArray, TasksCount, StoryDescriptorLabel, "Координатор история ");
 
 
         final int CircleCount = TasksCount;
@@ -168,28 +136,12 @@ public class EducateModuleWindowController {
 
         TasksInWindow.showTask(0);
 
-        /*for (int i = 0; i < Circles.length; i++)
-        {
-            //Circles[i] = new Circle(CircleOffsetFac * i + CircleRadius,CircleRadius * 2, CircleRadius);
-            //Circles[i].setFill(Paint.valueOf("#c5c5c5"));
-
-            //MainGridPane.add(Circles[i],1,5,3,1);
-            //GridPane.setValignment(Circles[i], VPos.CENTER);
-            //GridPane.setHalignment(Circles[i], HPos.CENTER);
-            //GridPane.setMargin(Circles[i], new Insets(5,5,5,5));
-
-            //CircleArea.getChildren().add(Circles[i]);
-
-            //CircleArea.getChildren().add(CircleIndArr.getCircleArray()[i]);
-
-        }*/
-
-        //Circles[0].setFill(Paint.valueOf("#005aae"));
-
         // Установить обработчик нажатий всех кнопок
         for (int j = 0; j < OptionsArray[0].length; j++)
         {
             //OptionsArray[0][j].setOnMouseClicked(this.BuiltMouseEvent(MainGridPane));
+            OptionsArray[0][j].setEditable(false);
+            //OptionsArray[0][j].setDisable(true);
             setMouseClickedHandler(OptionsArray[0][j]);
         }
 
