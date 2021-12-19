@@ -25,9 +25,11 @@ public class BaseController implements Controller {
 
     public void PreShowing()
     {
+        System.out.printf("pre\n");
     }
 
     public void PostShowing()
     {
+        System.out.printf("post\n");
     }
 }

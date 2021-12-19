@@ -46,7 +46,6 @@ public class EducateModuleWindowController extends BaseController{
     @FXML
     private Circle[] Circles;
 
-
     //private final int NumOfOptions = 4; // Количество кнопок с вариантами ответов
     private BDController DBControlForModuleWindow; // Экземпляр класса для работы с бд в этом окне
     private static final int OptionsCount = 4; // Кол-во вариантов ответов
@@ -109,12 +108,13 @@ public class EducateModuleWindowController extends BaseController{
     @FXML
     void initialize() {
 
-        // Запрос к базе, получение кол-ва вопросов
+        // Тут надо получить кол-во вопросов
         DBControlForModuleWindow = new BDController();
         TasksCount = DBControlForModuleWindow.getTasksCount();
+        // Тут надо заполнить массив вопросами и ответами
+        String[][] TempForTasks = new String[TasksCount][4];
 
 
-        final int CircleCount = TasksCount;
         //CircleIndicator CircleIndArr = new CircleIndicator(CircleCount, CircleArea);
         // Запрос к базе, получение кол-ва вопросов
 
@@ -122,73 +122,38 @@ public class EducateModuleWindowController extends BaseController{
         TextArea[][] OptionsArray = new TextArea[][] {{FirstOptionArea, SecondOptionArea, ThirdOptionArea, FourthOptionArea}};
         TextArea[] FakeTextArea = new TextArea[]{TaskArea};
         FakeTextArea[0].setEditable(false);
+
         //FakeTextArea[0].setDisable(true);
         //FakeTextArea[0].setFocusTraversable(false);
         //Label[] FakeTextArea = new Label[]{TaskArea};
         // рисование нужного кол-ва элементов в которых будут отображаться задания
 
         TasksInWindow = new AllTasksInWindow(FakeTextArea, OptionsArray, CircleArea,
-                TasksCount, StoryDescriptorLabel, "Координатор история ");
+                TasksCount, StoryDescriptorLabel, "Координатор история ",  TempForTasks);
+
         TasksInWindow.showTask(0);
         PrevTaskBTM.setStyle("-fx-text-fill: #93979C;");
 
         // Установить обработчик нажатий всех кнопок
         for (int j = 0; j < OptionsArray[0].length; j++)
         {
-            //OptionsArray[0][j].setOnMouseClicked(this.BuiltMouseEvent(MainGridPane));
             OptionsArray[0][j].setEditable(false);
-            //OptionsArray[0][j].setDisable(true);
             setMouseClickedHandler(OptionsArray[0][j]);
         }
 
         NextTaskBTM.setOnMouseClicked(mouseEvent -> {
             // меняются вопросы и варианты ответов
             TasksInWindow.showNextTask(PrevTaskBTM, NextTaskBTM);
-            //CircleIndArr.setNextActiveCircle();
         });
 
         PrevTaskBTM.setOnMouseClicked(mouseEvent -> {
             // меняются вопросы и варианты ответов
             TasksInWindow.showPrevTask(PrevTaskBTM, NextTaskBTM);
-            //CircleIndArr.setPrevActiveCircle();
         });
 
         ExitBTM.setOnMouseClicked(mouseEvent -> {
             Main.getNavigation().load("main_window.fxml").Show();
         });
-
-        /*FirstOptionBTM.setOnMouseClicked(mouseEvent -> {
-            TasksInWindow.setChosenOption(FirstOptionBTM);
-        });
-
-        SecondOptionBTM.setOnMouseClicked(mouseEvent -> {
-            TasksInWindow.setChosenOption(SecondOptionBTM);
-        });
-
-        ThirdOptionBTM.setOnMouseClicked(mouseEvent -> {
-            TasksInWindow.setChosenOption(ThirdOptionBTM);
-        });
-
-        FourthOptionBTM.setOnMouseClicked(mouseEvent -> {
-            TasksInWindow.setChosenOption(FourthOptionBTM);
-        });*/
-
-        /*Label testLabel = new Label("Width " + CircleArea.getWidth() + " Height " + CircleArea.getHeight());
-        testLabel.setScaleX(2);
-        testLabel.setScaleY(2);
-        MainGridPane.add(testLabel,2,1,3,1);*/
-
-        //FirstOptionBTM.setStyle("-fx-background-color: green");
-
-        // final Label testLabel = new Label("Хуйня");
-        //testLabel.setId("TestRow");
-
-        //Circle cir = new Circle(20,Color.BLUE);
-        //MainGridPane.add(testLabel,1,1);
-        //GridPane.setValignment(testLabel, VPos.CENTER);
-
-        //Circle myCircle = new Circle(20,20,40, Color.YELLOW);
-        //MainPane.getChildren().add(myCircle);
 
     }
 

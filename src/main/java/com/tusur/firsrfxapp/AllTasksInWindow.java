@@ -21,7 +21,7 @@ public class AllTasksInWindow {
 
     // как то надо еще передать массив вопросов полученных через класс BDController в выбранном окне
     AllTasksInWindow(TextArea TaskField[], TextArea[][] OptionsFields, Pane CircleArea,
-                     int TasksCount, Label TaskDescriptor, String TaskDescriptorText){
+                     int TasksCount, Label TaskDescriptor, String TaskDescriptorText, String[][] TempForTasks){
         this.TaskField = TaskField;
         this.OptionsFields = OptionsFields;
         this.TaskDescriptor = TaskDescriptor;
@@ -48,8 +48,23 @@ public class AllTasksInWindow {
         // Мой вариант, где все вопросы в одних и тех же местах выводятся
         for (int i = 0; i < TasksCount ; i++)
         {
-            TaskClass[i] = new TaskAndOntions("Задание " + (i+1) + " сделайте то-то", "делаю 1 (вопрос " + (i+1) + ")",
-                    "делаю 2 (вопрос " + (i+1) + ")", "делаю 3 (вопрос " + (i+1) + ")", "делаю 4 (вопрос " + (i+1) + ")", TaskField[0], OptionsFields[0]);
+            TaskClass[i] = new TaskAndOntions(
+                    "Задание " + (i+1) + " сделайте то-то",
+                    "делаю 1 (вопрос " + (i+1) + ")",
+                    "делаю 2 (вопрос " + (i+1) + ")",
+                    "делаю 3 (вопрос " + (i+1) + ")",
+                    "делаю 4 (вопрос " + (i+1) + ")",
+                    TaskField[0], OptionsFields[0]);
+
+            // Норм заполнение
+            /*TaskClass[i] = new TaskAndOntions(
+                    TempForTasks[i][0],
+                    TempForTasks[i][1],
+                    TempForTasks[i][2],
+                    TempForTasks[i][3],
+                    TempForTasks[i][4],
+                    TaskField[0], OptionsFields[0]);*/
+
             ChosenAnswers[i] = -1; // Типо не выбран ответ
         }
         //showTask(0);
@@ -99,6 +114,10 @@ public class AllTasksInWindow {
         }
     }
 
+    public int[] getChosenAnswers(){
+        return ChosenAnswers;
+    }
+
     // Получить кол-во заданий в окне
     public int getTasksCount(){
         return this.TasksCount;
@@ -109,6 +128,17 @@ public class AllTasksInWindow {
     {
         if (ShowedTask == TasksCount - 2){
             NextTaskBTM.setText("Завершить тест");
+            NextTaskBTM.setOnMouseClicked(mouseEvent -> {
+
+                // Тут надо занести данные в базу
+                // Одномерный массив выбранных ответов (индекс - номер вопроса -1, значение - номер варианта ответа)
+                for (int i = 0; i < ChosenAnswers.length; i++)
+                {
+                    System.out.printf(ChosenAnswers[i] + "\t");
+                }
+
+                Main.getNavigation().load("story_result_window.fxml").Show();
+            });
         }
 
         if(ShowedTask < TasksCount - 1)
@@ -129,9 +159,12 @@ public class AllTasksInWindow {
     {
         if(ShowedTask > 0)
         {
-            if (ShowedTask == TasksCount)
+            if (ShowedTask == TasksCount - 1)
             {
                 NextTaskBTM.setText("Следующий вопрос");
+                NextTaskBTM.setOnMouseClicked(mouseEvent -> {
+                    this.showNextTask(PrevTaskBTM, NextTaskBTM);
+                });
             }
             showTask(--ShowedTask);
             CircleIndArr.setPrevActiveCircle();
