@@ -61,15 +61,50 @@ public class PrimaryTestWindowController extends BaseController{
     void initialize() {
         ///////////////////////////////////////////////////////////////////////////////////////////////
         // Тут надо получить кол-во вопросов
-        DBControlForModuleWindow = new BDController();
-        TasksCount = DBControlForModuleWindow.getTasksCount();
+        BDController DBControlForModuleWindow = new BDController();
+        Connection connectDB = DBControlForModuleWindow.getConnection();
+        Statement statement = connectDB.createStatement();
+        String DataBaseName = DBControlForModuleWindow.getDataBaseName();//функции и переменные для работы с БД
+        TasksCount = DBControlForModuleWindow.GetPrimaryQuestionCount(statement);
         // Тут надо заполнить массив вопросами и ответами
-        String[][] TempForTasks = new String[TasksCount][4];
-
+        String[][] TempForTasks = new String[TasksCount][5]; //получение количества вопросов из БД
+        for(int i = 0; i<TasksCount; i++)
+        {
+            try//запрос текста вопроса
+            {
+                String Question_text = "SELECT Vopros FROM " +DataBaseName+".question where NUM = "+(i+1);
+                ResultSet Question_output = statement.executeQuery(Question_text);
+                while (Question_output.next())
+                {
+                    String text = Question_output.getString("Vopros");
+                    TempForTasks[i][0] = text;
+                    System.out.println("1Подстановка вопроса успешна");
+                }
+            }
+            catch (Exception exp)
+            {
+                System.out.println("Подстановка вопроса не выполнена, проверьте запрос");
+            }
+            for (int j = 0; j<4; j++)
+            {
+                try//запрос текста 4-х ответо на соответствующий вопрос
+                {
+                    String Question_text = "SELECT Otvettxt FROM " +DataBaseName+".otvetsperq where num_otv = "+(j+1)+" AND NUM_VOPR = "+(i+1);
+                    ResultSet Answer_output = statement.executeQuery(Question_text);
+                    while (Answer_output.next())
+                    {
+                        String text = Answer_output.getString("otvettxt");
+                        TempForTasks[i][j+1] = text;
+                        System.out.println("Подстановка ответа успешна");
+                    }
+                }
+                catch (Exception exp)
+                {
+                    System.out.println("Подстановка ответа не выполнена, проверьте запрос");
+                }
+            }
+        }
         /////////////////////////////////////////////////////////////////////////////////////////////////
-
-        //CircleIndicator CircleIndArr = new CircleIndicator(CircleCount, CircleArea);
-        // Запрос к базе, получение кол-ва вопросов
 
         // рисование нужного кол-ва элементов в которых будут отображаться задания
         TextArea[][] OptionsArray = new TextArea[][] {{FirstOptionArea, SecondOptionArea, ThirdOptionArea, FourthOptionArea}};
@@ -94,20 +129,19 @@ public class PrimaryTestWindowController extends BaseController{
             setMouseClickedHandler(OptionsArray[0][j]);
         }
 
-        NextTaskBTM.setOnMouseClicked(mouseEvent -> {
+        NextTaskBTM.setOnMouseClicked(mouseEvent -> {//следующий вопрос
             // меняются вопросы и варианты ответов
-            TasksInWindow.showNextTask(PrevTaskBTM, NextTaskBTM, "primary_test_result_window.fxml", "любая нужная тебе строка для записи в нужную таблицу");
+            TasksInWindow.showNextTask(PrevTaskBTM, NextTaskBTM, "primary_test_result_window.fxml", "pertest");//в данной функции имеется возможность выбрать таблицу, в которую будет вписаные данные. Именно название таблицы. Название БД уже будет вставлено
         });
 
-        PrevTaskBTM.setOnMouseClicked(mouseEvent -> {
+        PrevTaskBTM.setOnMouseClicked(mouseEvent -> {//предыдущий вопрос
             // меняются вопросы и варианты ответов
-            TasksInWindow.showPrevTask(PrevTaskBTM, NextTaskBTM, "primary_test_result_window.fxml", "любая нужная тебе строка для записи в нужную таблицу");
+            TasksInWindow.showPrevTask(PrevTaskBTM, NextTaskBTM, "primary_test_result_window.fxml", "pertest");
         });
 
         ExitBTM.setOnMouseClicked(mouseEvent -> {
-            Main.getNavigation().load("main_window.fxml").Show();
+            Main.getNavigation().load("main_window.fxml").Show();//кнопка выхода в меню
         });
-
     }
 
 }
