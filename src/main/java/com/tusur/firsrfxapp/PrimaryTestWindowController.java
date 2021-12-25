@@ -58,7 +58,7 @@ public class PrimaryTestWindowController extends BaseController{
     }
 
     @FXML
-    void initialize() {
+    void initialize() throws SQLException {
         ///////////////////////////////////////////////////////////////////////////////////////////////
         // Тут надо получить кол-во вопросов
         BDController DBControlForModuleWindow = new BDController();
