@@ -26,14 +26,15 @@ public class AllTasksInWindow {
    // private final int ShowedTasksCount; // Кол-во одновременно выводимых заданий (равно общему кол-ву заданий)
 
     
-    /*BDController DBControlForModuleWindow = new BDController();
-    Connection connectDB = DBControlForModuleWindow.getConnection();
-    Statement statement = connectDB.createStatement();
-    DataBaseName = DBControlForModuleWindow.getDataBaseName();*/
+      
+    BDController DBControlForModuleWindow = new BDController(); //Создание переменной класса базы данных для дальнейшей работы с ней
+    Connection connectDB = DBControlForModuleWindow.getConnection(); //подключение к базе данных
+    Statement statement = connectDB.createStatement(); //создание переменной для запросов
+    String DataBaseName = DBControlForModuleWindow.getDataBaseName(); //получение названия базы данных для запросов
     
     // как то надо еще передать массив вопросов полученных через класс BDController в выбранном окне
     AllTasksInWindow(TextArea TaskField[], TextArea[][] OptionsFields, Pane CircleArea,
-                     int TasksCount, Label TaskDescriptor, String TaskDescriptorText, String[][] TempForTasks){
+                     int TasksCount, Label TaskDescriptor, String TaskDescriptorText, String[][] TempForTasks) throws SQLException {
         this.TaskField = TaskField;
         this.OptionsFields = OptionsFields;
         this.TaskDescriptor = TaskDescriptor;
@@ -41,13 +42,8 @@ public class AllTasksInWindow {
         this.TasksCount = TasksCount; // типо получил кол-во вопросов
         ChosenAnswers = new int[TasksCount];
 
-        CircleIndArr = new CircleIndicator(TasksCount, CircleArea, this);
+        CircleIndArr = new CircleIndicator(TasksCount, CircleArea, this); //создание круговых элементов в нижней части, в зависимости от количества вопросов
 
-        // Настроить все поля label
-       /* for (int i = 0; i < TaskField.length; i++)
-        {
-            TaskField[i].setStyle("-fx-text-fill: #005aae ;") ;
-        }*/
         this.TaskDescriptorText = TaskDescriptorText;
         this.TaskDescriptor.setText(TaskDescriptorText);
 
@@ -57,34 +53,23 @@ public class AllTasksInWindow {
 
         // Каждому TaskClass надо назначить свои вопросы, варианты ответа и места где они будут выводиться
 
-        // Мой вариант, где все вопросы в одних и тех же местах выводятся
-        for (int i = 0; i < TasksCount ; i++)
+        //Заполнение поля вопроса и ответов текстом из базы данных
+        for (int i = 0; i < TasksCount; i++)
         {
-            TaskClass[i] = new TaskAndOntions(
-                    "Задание " + (i+1) + " сделайте то-то",
-                    "делаю 1 (вопрос " + (i+1) + ")",
-                    "делаю 2 (вопрос " + (i+1) + ")",
-                    "делаю 3 (вопрос " + (i+1) + ")",
-                    "делаю 4 (вопрос " + (i+1) + ")",
-                    TaskField[0], OptionsFields[0]);
 
             // Норм заполнение
-            /*TaskClass[i] = new TaskAndOntions(
+            TaskClass[i] = new TaskAndOntions(
                     TempForTasks[i][0],
                     TempForTasks[i][1],
                     TempForTasks[i][2],
                     TempForTasks[i][3],
                     TempForTasks[i][4],
-                    TaskField[0], OptionsFields[0]);*/
+                    TaskField[0], OptionsFields[0]);
 
             ChosenAnswers[i] = -1; // Типо не выбран ответ
         }
-        //showTask(0);
     }
 
-    /*public int getShowedTask() {
-        return this.ShowedTask;
-    }*/
 
     // Главное во втором измерении массива OptionsFields расположить кнопки в правильном порядке (смотри нумерацию в окне EducateModule)
     void setChosenOption(TextArea PushedArea){
@@ -93,71 +78,47 @@ public class AllTasksInWindow {
         {
             for (int j = 0; j < OptionsFields[i].length; j++)
             {
-                //OptionsFields[i][j].setStyle("-fx-background-color: #005aae");
                 OptionsFields[i][j].setStyle("-fx-border-color: #C8C9CB;\n" +
                         "-fx-border-radius 3px;\n" +
-                        "-fx-border-width: 0.5px;");
+                        "-fx-border-width: 0.5px;"); //задание визуальных параметров вариантам ответов
                 if (PushedArea == OptionsFields[i][j])
                 {
-                    // задание номер i + 1
-                    // выбранный ответ j + 1
-                    //OptionsFields[i][j].setStyle("-fx-background-color: green");
+
                     OptionsFields[i][j].setStyle("-fx-border-color: #005AAE;\n" +
                             "-fx-border-radius 3px;\n" +
-                            "-fx-border-width: 2px;");
+                            "-fx-border-width: 2px;"); //изменение внешнего вида выбранного ответа
                     // Все задания имеют одинаковые поля вывода
                     TaskClass[ShowedTask].setChosenOptionNum(j+1); //ChosenAns
                     ChosenAnswers[ShowedTask] = j+1;//ChosenAns;
 
-                    /*if (ShowedTasksCount == 1)
-                    {
-                        // Все задания имеют одинаковые поля вывода
-                        TaskClass[ShowedTask].setChosenOptionNum(j+1); //ChosenAns
-                        ChosenAnswers[ShowedTask] = j+1;//ChosenAns;
-                    }
-                    else
-                    {
-                        // Все задания имеют разные поля вывода
-                        TaskClass[i].setChosenOptionNum(j+1);
-                        ChosenAnswers[i] = j+1;
-                    }*/
                 }
             }
         }
     }
 
-    public int[] getChosenAnswers(){
-        return ChosenAnswers;
-    }
-
-    // Получить кол-во заданий в окне
-    public int getTasksCount(){
-        return this.TasksCount;
-    }
-
     // Вывести предыдущее задание
     public boolean showNextTask(Label PrevTaskBTM, Label NextTaskBTM, String NextWindow, String Query)
     {
-        if (ShowedTask == TasksCount - 2){
-            NextTaskBTM.setText("Завершить тест");
-            NextTaskBTM.setOnMouseClicked(mouseEvent -> {
-
-                // Тут надо занести данные в базу
+        if (ShowedTask == TasksCount - 2) //когда доходим до последнего задания
+        {
+            NextTaskBTM.setText("Завершить тест"); //смена текста
+            NextTaskBTM.setOnMouseClicked(mouseEvent -> { //н
 
                 // Одномерный массив выбранных ответов (индекс - номер вопроса -1, значение - номер варианта ответа)
-                /*for (int i = 0; i < ChosenAnswers.length; i++)
+                //заполнение в базе данных вариантов ответа, которые выбрал пользователь
+               for (int i = 0; i < ChosenAnswers.length; i++)
                 {
                     try {
-                        String PasteAsk = "INSERT INTO " + DataBaseName + ".stata_stories(Num, Num_student, Otvet, Num_popytki) VALUES (" + (i + 1) + "," + 1 + "," + ChosenAnswers[i] + "," + 1 + ")";
+                        String PasteAsk = "INSERT INTO " + DataBaseName + ".stata_"+Query+"(Num, Num_student, Otvet, Num_popytki) VALUES (" + (i + 1) + "," + 1 + "," + ChosenAnswers[i] + "," + 1 + ")";
                         statement.executeUpdate(PasteAsk);
                         System.out.println("Вставка ответа успешна");
                     } catch (Exception exp) {
                         System.out.println("Вставка ответа не удалась, проверьте запрос");
-                    }//создать запись
+                    }
                     System.out.printf(ChosenAnswers[i] + "\t");
-                }*/
+                }
 
-                Main.getNavigation().load(NextWindow).Show();
+                Main.getNavigation().load(NextWindow).Show();//переход на следующее окно
             });
         }
 
@@ -205,15 +166,12 @@ public class AllTasksInWindow {
             return true;
         }
 
-        //System.out.printf(ShowedTask + "\n");
-
         TaskDescriptor.setText(TaskDescriptorText + (ShowedTask + 1));
 
         OptionsFields[0][0].requestFocus();
 
         for (int i = 0; i < OptionsCount; i++)
         {
-            //OptionsFields[0][i].setStyle("-fx-background-color: #005aae");
             OptionsFields[0][i].setStyle(
                     "-fx-border-color: #C8C9CB;\n" +
                     "-fx-border-radius 3px;\n" +
@@ -222,7 +180,6 @@ public class AllTasksInWindow {
 
         if (ChosenAnswers[ShowedTask] != -1)
         {
-            //OptionsFields[0][ChosenAnswers[ShowedTask]-1].setStyle("-fx-background-color: green");
             OptionsFields[0][ChosenAnswers[ShowedTask]-1].requestFocus();
             OptionsFields[0][ChosenAnswers[ShowedTask]-1].setStyle(
                     "-fx-border-color: #005AAE;\n" +
@@ -230,41 +187,8 @@ public class AllTasksInWindow {
                             "-fx-border-width: 2px;");
         }
 
-        /*if (ChosenAnswers[ShowedTask] != -1)
-        {
-            OptionsFields[0][ChosenAnswers[ShowedTask]].setStyle("-fx-background-color: green");
-        }*/
-
-        // Вывод выбранных ответов для каждого задания
-        /*for (int i = 0; i < TasksCount; i++)
-        {
-            System.out.printf(ChosenAnswers[i] + "\t");
-        }
-        System.out.printf("\n");*/
-
-
-
-        /*TaskField.setText(TaskClass[ShowedTask].getTask());
-        for (int i = 0; i < this.OptionsCount; i++)
-        {
-            OptionsFields[i].setText(TaskClass[ShowedTask].getOption(i));
-        }
-        */
         TaskClass[ShowedTask].showTask();
         return false;
     }
-
-    // Вывести все задания в разных элементах, для Егора
-   /* public boolean showAllTask(){
-        if (ShowedTasksCount > 1)
-        {
-            for (int i = 0; i < ShowedTasksCount; i++)
-            {
-                TaskClass[i].showTask();
-            }
-            return false;
-        }
-        return  true;
-    }*/
 
 }
