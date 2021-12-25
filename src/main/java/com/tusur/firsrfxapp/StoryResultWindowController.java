@@ -24,11 +24,17 @@ public class StoryResultWindowController extends BaseController{
     private Label ResultField;
 
     @FXML
-    void initialize() {
-        GoToMenuBTM.setOnMouseClicked(mouseEvent -> {
+    void initialize() throws SQLException {
+        BDController DBControlForModuleWindow = new BDController();
+        Connection connectDB = DBControlForModuleWindow.getConnection();
+        Statement statement = connectDB.createStatement();
+        String DataBaseName = DBControlForModuleWindow.getDataBaseName();//функции и переменные для работы с БД
+        int Right = DBControlForModuleWindow.GetRightStory1(statement, DBControlForModuleWindow, DataBaseName);//получение правильных ответов пользователя
+        ResultField.setText("Правильных ответов: "+Right+"/"+DBControlForModuleWindow.getTasksCount(statement));//текст с результатами
+        DBControlForModuleWindow.UpdateStory1Status(statement, DataBaseName, Right);//обновление информации о прохождении истории
+        GoToMenuBTM.setOnMouseClicked(mouseEvent -> {//выход в главное меню
             Main.getNavigation().load("main_window.fxml").Show();
         });
         //
     }
-
 }
