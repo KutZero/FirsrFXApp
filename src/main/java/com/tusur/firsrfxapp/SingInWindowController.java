@@ -28,15 +28,25 @@ public class SingInWindowController extends BaseController{
     private Button SingUpBTM;
 
     @FXML
-    void initialize() {
+    void initialize() throws SQLException {
         LoginField.setPromptText("Имя пользователя");
         PasswordField.setPromptText("Пароль");
+        BDController DBControlForModuleWindow = new BDController();
+        Connection connectDB = DBControlForModuleWindow.getConnection();
+        Statement statement = connectDB.createStatement();//функции и переменные для работы с БД
+        SingInBTM.setOnMouseClicked(mouseEvent -> {//Нажатие на кнопку "Вход"
+            if(DBControlForModuleWindow.GetLogin(statement, LoginField.getText(), PasswordField.getText()) != -1) {//проверка логина и пароля
 
-        SingInBTM.setOnMouseClicked(mouseEvent -> {
-            Main.getNavigation().load("welcome_window.fxml").Show();
+                Main.getNavigation().load("welcome_window.fxml").Show();//Удача: вход в профиль
+            }
+            else//Неудача: очищение строк "Логин" и "Пароль"
+            {
+                LoginField.clear();
+                PasswordField.clear();
+            }
         });
 
-        SingUpBTM.setOnMouseClicked(mouseEvent -> {
+        SingUpBTM.setOnMouseClicked(mouseEvent -> {//Нажатие на кнопку "Регистрация"
             Main.getNavigation().load("sing_up_window.fxml").Show();
         });
     }
