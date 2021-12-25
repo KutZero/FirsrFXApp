@@ -24,11 +24,17 @@ public class PrimaryTestResultWindowController extends BaseController{
     private Label ResultField;
 
     @FXML
-    void initialize() {
-        GoToMenuBTM.setOnMouseClicked(mouseEvent -> {
+   void initialize() throws SQLException {
+        BDController DBControlForModuleWindow = new BDController();
+        Connection connectDB = DBControlForModuleWindow.getConnection();
+        Statement statement = connectDB.createStatement();
+        String DataBaseName = DBControlForModuleWindow.getDataBaseName();//функции для работы с БД
+        int Right = DBControlForModuleWindow.GetRightAnswers(statement, DBControlForModuleWindow, DataBaseName);//Получение правильных ответов пользователя
+        ResultField.setText("Правильных ответов: "+Right+"/"+DBControlForModuleWindow.GetPrimaryQuestionCount(statement));//Текст поля с результами
+        DBControlForModuleWindow.UpdatePrimaryStatus(statement, DataBaseName, Right);//изменение у пользователя результата прохождения теста
+        GoToMenuBTM.setOnMouseClicked(mouseEvent -> { //выход в главное меню
             Main.getNavigation().load("main_window.fxml").Show();
         });
-        //
     }
 
 }
