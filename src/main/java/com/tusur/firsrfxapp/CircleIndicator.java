@@ -5,39 +5,20 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
-public class CircleIndicator{
-    /*private final int number;
-    private Circle Object;
+public class CircleIndicator{//класс для создания и взаимодействия с кружками в нижней части приложения
 
-    public int getNumber(){
-        return number;
-    }
-
-    public CircleIndicator(double x, double y, double radius, int num){
-        Object = new Circle(x,y, radius);
-        this.number = num;
-    }
-
-    public void setFill(Paint paint) {
-        Object.setFill(paint);
-    }
-
-    public Circle getObject() {
-        return Object;
-    }*/
-
-    private final Circle[] Circles;
-    private int ActiveCircle;
+    private final Circle[] Circles; //массив кружков
+    private int ActiveCircle; //номер активного кружка
     private final int CircleRadius = 5; // Радиус кружков индикатора
     private final int CircleOffsetFac = 15; // Отступ между кружками индикатора
-    private final AllTasksInWindow TasksInWindow;
+    private final AllTasksInWindow TasksInWindow; //количество заданий
 
-    public boolean setNextActiveCircle(){
+    public boolean setNextActiveCircle(){ //переключение на следующий кружок
         if (ActiveCircle < Circles.length - 1)
         {
-            Circles[ActiveCircle].setFill(Paint.valueOf("#c5c5c5"));
-            ActiveCircle++;
-            Circles[ActiveCircle].setFill(Paint.valueOf("#005aae"));
+            Circles[ActiveCircle].setFill(Paint.valueOf("#c5c5c5")); //смена цвета на серый
+            ActiveCircle++;//переход на следующий
+            Circles[ActiveCircle].setFill(Paint.valueOf("#005aae")); //синий цвет у активного кружка
             return false;
         }
         return true; // Выбран последний вопрос
@@ -60,7 +41,7 @@ public class CircleIndicator{
         return true; // Выбран первый вопрос
     }
 
-    private void setMouseClickedHandler (Circle CurrentCircle) {
+    private void setMouseClickedHandler (Circle CurrentCircle) { //обработка нажатия на активный кружок
         CurrentCircle.setOnMouseClicked(mouseEvent -> {
 
             Circles[ActiveCircle].setFill(Paint.valueOf("#c5c5c5"));
@@ -71,19 +52,20 @@ public class CircleIndicator{
     }
 
     // Конструктор
-    CircleIndicator(int CirclesCount, Pane CircleArea, AllTasksInWindow TasksInWindow){
+    CircleIndicator(int CirclesCount, Pane CircleArea, AllTasksInWindow TasksInWindow){ //конструктор класса, создающий кружки, в зависимости от количества вопросв
         this.TasksInWindow = TasksInWindow;
         Circles = new Circle[CirclesCount];
         ActiveCircle = 0;
         CircleArea.setPrefWidth(CirclesCount * CircleOffsetFac - CircleRadius);
-        for (int i = 0; i < CirclesCount; i++)
+        for (int i = 0; i < CirclesCount; i++)//создание
         {
-            Circles[i] = new Circle(CircleOffsetFac * i + CircleRadius,CircleRadius * 2, CircleRadius);
+            Circles[i] = new Circle(CircleOffsetFac * i + CircleRadius,CircleRadius * 2, CircleRadius); //создание, использууя параметры размеров
             Circles[i].setFill(Paint.valueOf("#c5c5c5"));
             Circles[i].setId(Integer.toString(i));
             setMouseClickedHandler (Circles[i]);
-            CircleArea.getChildren().add(Circles[i]);
+            CircleArea.getChildren().add(Circles[i]);//добавление кружка в область
         }
         Circles[ActiveCircle].setFill(Paint.valueOf("#005aae"));
     }
 }
+
