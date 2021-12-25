@@ -66,23 +66,18 @@ public class StoryWindowController extends BaseController{
     }
 
     @FXML
-    void initialize() {
+    void initialize() throws SQLException {
 
-        ////////////////////////////////////////////////////////////////////////////////////////////////
-        // Тут надо получить кол-во вопросов
+       //Данный контроллер аналогично по смыслу PrimaryTestWindowController
 
 
         BDController DBControlForModuleWindow = new BDController();
-        TasksCount = DBControlForModuleWindow.getTasksCount();
-        String[][] TempForTasks = new String[TasksCount][4];
-
-        /*BDController DBControlForModuleWindow = new BDController();
         Connection connectDB = DBControlForModuleWindow.getConnection();
-        TasksCount = DBControlForModuleWindow.getTasksCount();
         Statement statement = connectDB.createStatement();
+        TasksCount = DBControlForModuleWindow.getTasksCount(statement);
+        String[][] TempForTasks = new String[TasksCount][5];
         DataBaseName = DBControlForModuleWindow.getDataBaseName();
         // Тут надо заполнить массив вопросами и ответами
-        String[][] TempForTasks = new String[TasksCount][4];
          for(int i = 0; i<TasksCount; i++)
         {
             try
@@ -104,12 +99,12 @@ public class StoryWindowController extends BaseController{
             {
                 try
                 {
-                    String Question_text = "SELECT otvet FROM " +DataBaseName+".otvetsstories where NumStory = "+(i+1);
+                    String Question_text = "SELECT otvet FROM " +DataBaseName+".otvetsstories where numOtv = "+(j+1)+" AND NumStory = "+(i+1);
                     ResultSet Answer_output = statement.executeQuery(Question_text);
                     while (Answer_output.next())
                     {
                         String text = Answer_output.getString("otvet");
-                        TempForTasks[i][j] = text;
+                        TempForTasks[i][j+1] = text;
                         System.out.println("Подстановка ответа успешна");
                     }
                 }
@@ -118,10 +113,10 @@ public class StoryWindowController extends BaseController{
                     System.out.println("Подстановка ответа не выполнена, проверьте запрос");
                 }
             }
-        }*/
+        }
+
         /////////////////////////////////////////////////////////////////////////////////////////////////
 
-        //CircleIndicator CircleIndArr = new CircleIndicator(CircleCount, CircleArea);
         // Запрос к базе, получение кол-ва вопросов
 
         // рисование нужного кол-ва элементов в которых будут отображаться задания
@@ -130,10 +125,6 @@ public class StoryWindowController extends BaseController{
         TextArea[] FakeTextArea = new TextArea[]{TaskArea};
         FakeTextArea[0].setEditable(false);
 
-        //FakeTextArea[0].setDisable(true);
-        //FakeTextArea[0].setFocusTraversable(false);
-        //Label[] FakeTextArea = new Label[]{TaskArea};
-        // рисование нужного кол-ва элементов в которых будут отображаться задания
 
         TasksInWindow = new AllTasksInWindow(FakeTextArea, OptionsArray, CircleArea,
                 TasksCount, StoryDescriptorLabel, "Координатор история ",  TempForTasks);
@@ -151,13 +142,13 @@ public class StoryWindowController extends BaseController{
         NextTaskBTM.setOnMouseClicked(mouseEvent -> {
             // меняются вопросы и варианты ответов
             TasksInWindow.showNextTask(PrevTaskBTM, NextTaskBTM, "story_result_window.fxml",
-                    "любая нужная тебе строка для записи в нужную таблицу");
+                    "stories");
         });
 
         PrevTaskBTM.setOnMouseClicked(mouseEvent -> {
             // меняются вопросы и варианты ответов
             TasksInWindow.showPrevTask(PrevTaskBTM, NextTaskBTM, "primary_test_result_window.fxml",
-                    "любая нужная тебе строка для записи в нужную таблицу");
+                    "stories");
         });
 
         ExitBTM.setOnMouseClicked(mouseEvent -> {
