@@ -37,19 +37,22 @@ public class SingUpWindowController extends BaseController{
     private Button SingUpBTM;
 
     @FXML
-    void initialize() {
+    void initialize() throws SQLException {
         LoginField.setPromptText("Имя пользователя");
         PasswordField.setPromptText("Пароль");
         NameField.setPromptText("Имя");
         LastNameField.setPromptText("Фамилия");
-        PatronymicField.setPromptText("Отчество");
-
+        PatronymicField.setPromptText("Отчество");//Установка фонового текста для полей заполнения данных
+        BDController DBControlForModuleWindow = new BDController();
+        Connection connectDB = DBControlForModuleWindow.getConnection();
+        Statement statement = connectDB.createStatement();//функции и переменные для работы с БД
         GoToSingInBTM.setOnMouseClicked(mouseEvent -> {
-            Main.getNavigation().GoBack();
+            Main.getNavigation().GoBack();//возврат в меню
         });
 
-        SingUpBTM.setOnMouseClicked(mouseEvent -> {
-            Main.getNavigation().load("welcome_window.fxml").Show();
+        SingUpBTM.setOnMouseClicked(mouseEvent -> {//Вставка нового пользователя в БД
+            DBControlForModuleWindow.AddUser(statement, LoginField.getText(), PasswordField.getText(),NameField.getText(),LastNameField.getText(),PatronymicField.getText());
+            Main.getNavigation().load("welcome_window.fxml").Show();//переход в приветственное окно
         });
 
     }
